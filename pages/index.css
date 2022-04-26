@@ -18,3 +18,9 @@
 @import url(../blocks/element/__heart/element__heart.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__heading/form__heading.css);
+@import url(../blocks/form/__name-edit/form__name-edit.css);
+@import url(../blocks/form/__profession-edit/form__profession-edit.css);
+@import url(../blocks/form/__button/form__button.css);
+@import url(../blocks/form/__close-popup/form__close-popup.css);
