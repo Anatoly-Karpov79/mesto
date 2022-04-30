@@ -1,8 +1,8 @@
-.popap {
+.popup {
     display: none;
 }
 
-.popap:before {
+.popup:before {
         
     content: '';
     background-color: #000;

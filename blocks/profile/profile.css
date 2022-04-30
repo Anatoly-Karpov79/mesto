@@ -1,6 +1,6 @@
 .profile {
     display: grid;
-    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-columns: 25% 40% auto;
     width: 70%;
     height: 120px;
     margin: 40px auto 0 auto;
