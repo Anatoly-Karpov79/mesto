@@ -5,9 +5,14 @@ cursor: pointer;
 background-color: black;
 background-image: url(../../../images/edit.svg);
 background-repeat: no-repeat;
-background-position: 40%;
-background-size: 60%;
+background-position: 50%;
+background-size: 10px 10px;
 border: 1px solid #fff;
 margin: 0 0 0 18px;
 align-self: center;
+}
+@media screen and (max-width: 645px) {
+    .profile__edit-button {
+       background-size: 7.5px 7.5px;
+    }
 }
