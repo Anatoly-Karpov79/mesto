@@ -16,6 +16,7 @@
 @media screen and (max-width: 920px) {
     .elements {
         width: 80%;
+        margin: 36px auto 0 auto;
     
 }
 }
@@ -24,7 +25,7 @@
         grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(6, 1fr);
     gap: 12px;
-    margin: 36px 4% 0 4%;
+    
     justify-items: center;
     }
 }

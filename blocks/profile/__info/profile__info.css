@@ -6,4 +6,11 @@
     grid-template-rows: auto auto;
     align-content: space-evenly;
     gap: 16px;
+    padding-left: 5%;
+}
+@media screen and (max-width: 645px) {
+    .profile__info {
+        width: 83%;
+        grid-template-columns: auto auto;
+    }
 }

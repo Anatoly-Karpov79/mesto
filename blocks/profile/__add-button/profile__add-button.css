@@ -12,9 +12,9 @@ justify-self: end;
 box-sizing: border-box;
 border-radius: 2px;
 }
-@media screen and (max-width: 645px) {
+@media screen and (max-width: 651px) {
     .profile__add-button {
-        width: 282px;
+        width: 100%;
         background-size: 16px 16px;
     }
 }

@@ -8,3 +8,9 @@
     
 }
 }
+@media screen and (max-width: 651px) {
+    .footer {
+        width: 80%;
+        margin: 0;
+    }
+}
