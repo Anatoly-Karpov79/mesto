@@ -1,8 +1,7 @@
 .popup__heading {
-    width: 330px;
-height: 23px;
-font-family: 'Inter';
-font-style: normal;
+  max-width: 330px;
+  width: 100%;
+
 font-weight: 900;
 font-size: 24px;
 line-height: 29px;

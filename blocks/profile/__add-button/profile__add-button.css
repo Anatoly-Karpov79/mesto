@@ -7,8 +7,10 @@ background-image: url(../../../images/add.svg);
 background-repeat: no-repeat;
 background-position: 50%;
 background-size: 21%;
-border: 1px solid #fff;
+border: 2px solid #fff;
 justify-self: end;
+box-sizing: border-box;
+border-radius: 2px;
 }
 @media screen and (max-width: 645px) {
     .profile__add-button {

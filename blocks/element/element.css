@@ -1,6 +1,6 @@
 .element {
     width: 282px;
-height: 361px;
+min-height: 361px;
 display: grid;
 justify-items: center;
 grid-template-columns: repeat(2, auto);

@@ -5,20 +5,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./pages/index.css">
-    <title>Mesto</title>
+    <title>Место</title>
 </head>
 <body class="root">
     <header class="header">
         <img class="header__logo" src="./images/logo.svg" alt="Логотип сайта">
-        <hr class="header__line">
     </header>
 
     <section class="profile">
-        
         <img class="profile__avatar-image" src="./images/kusto.jpg" alt="Фото профиля">
-
         <div class="profile__info">
-            <p class="profile__name">Жак-Ив Кусто</p>
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
              <button type="button" class="profile__edit-button"></button>
             <p class="profile__profession">Исследователь океана</p>
            
@@ -27,51 +24,53 @@
         <button type="button" class="profile__add-button"></button>
     </section>
     <section class="elements">
-        <div class="element">
+        <article class="element">
             <img class="element__image" src="./images/karachaevsk.jpg" alt="Фото">
-            <p class="element__name">Карачаевск</p>
+            <h2 class="element__name">Карачаевск</h2>
             <button class="element__heart" type="button"></button>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
             <img class="element__image" src="./images/elbrus.jpg" alt="Фото Эльбрус">
-            <p class="element__name">Гора Эльбрус</p>
+            <h2 class="element__name">Гора Эльбрус</h2>
             <button class="element__heart" type="button"></button>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
             <img class="element__image" src="./images/dombay.jpg" alt="Фото Домбай">
-            <p class="element__name">Домбай</p>
+            <h2 class="element__name">Домбай</h2>
             <button class="element__heart" type="button"></button>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
             <img class="element__image" src="./images/voroncov-palace.jpg" alt="Фото Воронцовский дворец">
-            <p class="element__name">Воронцовский дворец</p>
+            <h2 class="element__name">Воронцовский дворец</h2>
             <button class="element__heart" type="button"></button>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
             <img class="element__image" src="./images/yashmoviy-beach.jpg" alt="Фото Яшмовый пляж">
-            <p class="element__name">Яшмовый пляж</p>
+            <h2 class="element__name">Яшмовый пляж</h2>
             <button class="element__heart" type="button"></button>
-        </div>
-        <div class="element">
+        </article>
+        <article class="element">
             <img class="element__image" src="./images/mangup-kale.jpg" alt="Фото Мангуп-Кале">
-            <p class="element__name">Мангуп-Кале</p>
+            <h2 class="element__name">Мангуп-Кале</h2>
             <button class="element__heart" type="button"></button>
-        </div>
+        </article>
     </section>
     <footer class="footer">
-        <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+        <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
     <div class="popup">
-      <form class="popup__container">
-        <button type="button" class="popup__close-popup"></button>
-        <h2 class="popup__heading">Редактировать профиль</h2>
-        <input type="text" class="popup__input popup__input_name" value="" id="name">
-        <input type="text" class="popup__input popup__input_job" value="" id="job">
-        <button type="submit" class="popup__button">Сохранить</button> 
-       </form>   
+      <div class="popup__container">
+          <button type="button" class="popup__close-popup"></button>
+          <h3 class="popup__heading">Редактировать профиль</h3>
+          <form name="profile-info">
+            <input type="text" class="popup__input popup__input_type_name" value="" id="name">
+            <input type="text" class="popup__input popup__input_type_job" value="" id="job">
+            <button type="submit" class="popup__button">Сохранить</button> 
+          </form> 
+      </div>   
     </div>    
       
-      <script src="./scripts/popup__open.js"></script>
+      <script src="./scripts/index.js"></script>
 </body>
 </html>
