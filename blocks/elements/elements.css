@@ -1,12 +1,15 @@
 .elements {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(282px, max-content));
+    
     gap: 17px;
-    width: 70%;
-    margin: 45px 15%  0 auto;
+    max-width: 880px;
+    width: 100%;
+    padding-top: 45px;
+    justify-items: center;
+    justify-self: center;
 }
-@media screen and (max-width: 1100px) {
+/*@media screen and (max-width: 1100px) {
     .elements {
         grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -19,13 +22,12 @@
         margin: 36px auto 0 auto;
     
 }
-}
+}*/
 @media screen and (max-width: 641px) {
     .elements {
         grid-template-columns: repeat(1, 1fr);
     grid-template-rows: repeat(6, 1fr);
-    gap: 12px;
-    
+    gap: 20px;
     justify-items: center;
     }
 }
