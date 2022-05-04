@@ -28,5 +28,6 @@
     grid-template-rows: repeat(6, 1fr);
     gap: 20px;
     justify-items: center;
+    padding-top: 36px;
     }
 }

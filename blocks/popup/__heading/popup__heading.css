@@ -12,7 +12,8 @@ color: #000000;
     .popup__heading {
         font-size: 18px;
         width: 238px;
-line-height: 22px;
+        line-height: 22px;
+        margin: 25px 22px 0 22px;
     }
 }
 

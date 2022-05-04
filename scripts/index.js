@@ -3,7 +3,7 @@ const popup = document.querySelector('.popup');
 const popupCloseButton = document.querySelector('.popup__close-popup');
 let popupNameEdit = document.querySelector('.popup__input_type_name');
 let popupJobEdit = document.querySelector('.popup__input_type_job');
-let formElement = document.querySelector ('.profile-form');
+let form = document.querySelector ('.form');
 
 function openPopup () {
     popup.classList.toggle('popup_opened');
@@ -26,5 +26,6 @@ function formSubmitHandler (evt) {
 }
 
 form.addEventListener ('submit', formSubmitHandler );
+
 
 

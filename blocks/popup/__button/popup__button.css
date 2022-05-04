@@ -20,6 +20,9 @@ cursor: pointer;
         width: 238px;
         height: 46px;
         margin: 45px 22px 25px 22px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
 
     }
 }

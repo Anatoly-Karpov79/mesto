@@ -28,6 +28,9 @@ color: #FFFFFF;
     .profile__name {
        
        font-size: 27px;
-text-align: center;
+     text-align: center;
+     font-weight: 500;
+     font-size: 27px;
+     line-height: 33px;
     }
 }

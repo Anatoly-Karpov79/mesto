@@ -21,7 +21,7 @@
 @media screen and (max-width: 652px) {
     .profile {
         grid-template-columns: 1fr;
-       grid-template-rows: repeat(3, 1fr);
+       grid-template-rows: 1fr 1fr 60px;
        justify-items: center;
     }
 }

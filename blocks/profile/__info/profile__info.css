@@ -12,5 +12,6 @@
     .profile__info {
         width: 83%;
         grid-template-columns: auto auto;
+        gap: 10px;
     }
 }
