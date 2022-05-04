@@ -8,16 +8,19 @@ line-height: 114%;
 white-space: nowrap;
 overflow: hidden;
 text-overflow: ellipsis;
-
-
 color: #FFFFFF;
 
 }
+
+@media screen and (max-width: 950px) {
+    .profile__name {
+       font-size: 37px;
+    }
+}
+
 @media screen and (max-width: 800px) {
     .profile__name {
        font-size: 35px;
-
-
     }
 }
 

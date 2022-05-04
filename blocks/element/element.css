@@ -2,8 +2,7 @@
     width: 282px;
 min-height: 361px;
 display: grid;
-justify-items: center;
-grid-template-columns: repeat(2, auto);
+grid-template-columns: 245px 37px;
 grid-template-rows: repeat(2, auto);
 
 background: #FFFFFF;

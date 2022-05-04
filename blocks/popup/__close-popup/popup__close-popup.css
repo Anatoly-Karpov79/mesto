@@ -12,6 +12,9 @@
     background-size: 100%;
     border: 1px solid #000;
 }
+.popup__close-popup:hover {
+    opacity: 0.6;
+}
 @media screen and (max-width: 652px) {
     .popup__close-popup {
     top: -32px;
