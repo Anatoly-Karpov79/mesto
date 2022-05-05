@@ -22,6 +22,7 @@ popupCloseButton.addEventListener ('click', closePopup )
 let nameInput = document.querySelector ('.profile__name');
 let jobInput = document.querySelector ('.profile__profession');
 
+
 function formSubmitHandler (evt) {
     evt.preventDefault();
     nameInput.textContent = popupNameEdit.value;
