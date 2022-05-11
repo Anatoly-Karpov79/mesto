@@ -26,43 +26,22 @@
     </section>
     
     <section class="elements">
-        <article class="element">
-            <img class="element__image" src="./images/karachaevsk.jpg" alt="Фото">
-            <h2 class="element__name">Карачаевск</h2>
-            <button class="element__heart" type="button"></button>
-        </article>
-        <article class="element">
-            <img class="element__image" src="./images/elbrus.jpg" alt="Фото Эльбрус">
-            <h2 class="element__name">Гора Эльбрус</h2>
-            <button class="element__heart" type="button"></button>
-        </article>
-        <article class="element">
-            <img class="element__image" src="./images/dombay.jpg" alt="Фото Домбай">
-            <h2 class="element__name">Домбай</h2>
-            <button class="element__heart" type="button"></button>
-        </article>
-        <article class="element">
-            <img class="element__image" src="./images/voroncov-palace.jpg" alt="Фото Воронцовский дворец">
-            <h2 class="element__name">Воронцовский дворец</h2>
-            <button class="element__heart" type="button"></button>
-        </article>
-        <article class="element">
-            <img class="element__image" src="./images/yashmoviy-beach.jpg" alt="Фото Яшмовый пляж">
-            <h2 class="element__name">Яшмовый пляж</h2>
-            <button class="element__heart" type="button"></button>
-        </article>
-        <article class="element">
-            <img class="element__image" src="./images/mangup-kale.jpg" alt="Фото Мангуп-Кале">
-            <h2 class="element__name">Мангуп-Кале</h2>
-            <button class="element__heart" type="button"></button>
-        </article>
+
     </section>
+        <template id="element">
+            <div class="element"> 
+               <img class="element__image" src="" alt="Фото">
+               <h2 class="element__name"></h2>
+               <button class="element__heart" type="button"></button>
+            </div>  
+        </template> 
+
     
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popap__edit">
       <div class="popup__container">
           <button aria-label="Close" type="button" class="popup__close-popup"></button>
           <h3 class="popup__heading">Редактировать профиль</h3>
@@ -72,7 +51,25 @@
             <button type="submit" class="popup__button">Сохранить</button> 
           </form>
       </div>   
-    </div>    
+    </div> -->
+
+    <!--Попап добавить -->
+    <div class="popup popup__add">
+        <div class="popup__container">
+            <button aria-label="Close" type="button" class="popup__close-popup popup__add-close"></button>
+            <h3 class="popup__heading">Новое место</h3>
+            <form name="form__add" class="form" id="form__add">
+              <input type="text" class="popup__input popup__input_add_name" placeholder="Название"  name="name">
+              <input type="text" class="popup__input  popup__input_add_link" placeholder="Ссылка на картинку" name="link">
+              <button type="submit" class="popup__button">Создать</button> 
+            </form>
+        </div>   
+      </div>    
+      <div class="popup popup__view">
+        <div class="popup__container">
+            <img class="popup__image" src="../mesto/images/mangup-kale.jpg" alt="Фото">
+        </div>   
+      </div>    
 
       <script src="./scripts/index.js"></script>
 </body>
