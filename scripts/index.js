@@ -95,6 +95,10 @@ const initialCards = [
 
   function submitAddHandler (evt) {
     evt.preventDefault();
+    
+    name = 'Холмогорский район',
+      link = 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    createCard(name,link);
     console.log ('Hello');
     
 
