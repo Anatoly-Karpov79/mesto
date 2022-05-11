@@ -90,15 +90,22 @@ const initialCards = [
   }
   initialCards.forEach (({name,link}) => createCard(name,link));
    
-  const cardNameAdd = document.querySelector('.popup__input_add_name');
-  const cardImageAdd = document.querySelector('.popup__input_add_link');
+  const cardNameAdd = document.querySelector('.popup__input_add_name').value;
+  const cardImageAdd = document.querySelector('.popup__input_add_link').value;
+
+  const newCard = [
+    {
+      name: cardNameAdd.textContent,
+      link: cardImageAdd.src
+    }
+  ]
 
   function submitAddHandler (evt) {
     evt.preventDefault();
+    newCard.forEach (({name,link}) => createCard(name,link));
     
-    name = 'Холмогорский район',
-      link = 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    createCard(name,link);
+      
+    
     console.log ('Hello');
     
 
