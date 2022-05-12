@@ -78,19 +78,33 @@ const initialCards = [
   const cardTemplate = document.querySelector('#element').content;
   const elements = document.querySelector('.elements')
 
+  function makeLike () {
+    elementHeart.classList.toggle('.element__heart_active');
+  }
 
   
-  function createCard (name, link) {
+  function createCard (name, link, alt) {
     const element = cardTemplate.cloneNode(true);
     const elementImage = element.querySelector('.element__image');
     const elementName = element.querySelector('.element__name');
     const elementHeart = element.querySelector('.element__heart');
+    const elementDelete = element.querySelector('.element__delete');
     elementImage.src = link;
     elementName.textContent = name;
+    elementImage.alt = alt;
+
+    elementHeart.addEventListener('click', (evt) => {
+      evt.target.classList.add('element__heart_activ')
+    });
+
+    elementDelete.addEventListener('click', (e) => {
+      e.target.closest('.element').remove()
+    });
+    
      elements.prepend(element);
 
   }
-  initialCards.forEach (({name,link}) => createCard(name,link));
+  initialCards.forEach (({name, link, alt}) => createCard(name, link, alt));
    
   const cardNameAdd = document.querySelector('.popup__input_add_name');
   const cardImageAdd = document.querySelector('.popup__input_add_link');
@@ -101,8 +115,9 @@ const initialCards = [
    
     const name = cardNameAdd.value;
     const link = cardImageAdd.value;
+    const alt = cardNameAdd.value;
 
-    createCard(name,link);
+    createCard(name,link,alt);
 
    closePopup(popupAdd);
    formAdd.reset();
