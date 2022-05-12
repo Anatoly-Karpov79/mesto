@@ -65,10 +65,10 @@ const initialCards = [
       name: 'Камчатка',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
     },
-  /*  {
+    {
       name: 'Холмогорский район',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },*/
+    },
     {
       name: 'Байкал',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
@@ -78,6 +78,8 @@ const initialCards = [
   const cardTemplate = document.querySelector('#element').content;
   const elements = document.querySelector('.elements')
 
+
+  
   function createCard (name, link) {
     const element = cardTemplate.cloneNode(true);
     const elementImage = element.querySelector('.element__image');
@@ -90,62 +92,25 @@ const initialCards = [
   }
   initialCards.forEach (({name,link}) => createCard(name,link));
    
-  const cardNameAdd = document.querySelector('.popup__input_add_name').value;
-  const cardImageAdd = document.querySelector('.popup__input_add_link').value;
+  const cardNameAdd = document.querySelector('.popup__input_add_name');
+  const cardImageAdd = document.querySelector('.popup__input_add_link');
 
-  const newCard = [
-    {
-      name: cardNameAdd.textContent,
-      link: cardImageAdd.src
-    }
-  ]
-
+  
   function submitAddHandler (evt) {
     evt.preventDefault();
-    newCard.forEach (({name,link}) => createCard(name,link));
-    
-      
-    
-    console.log ('Hello');
-    
+   
+    const name = cardNameAdd.value;
+    const link = cardImageAdd.value;
+
+    createCard(name,link);
 
    closePopup(popupAdd);
+   formAdd.reset();
   }
     
-  
 
    formAdd.addEventListener ('submit', submitAddHandler );
   
-
-  /*
-  
-  
-  
-  
-  
-  function addCard (evt) {
-    evt.preventDefault();
-    const cardElement = cardTemplate.cloneNode(true);
-        cardElement.querySelector('.popup__input_add_name').textContent = element.name;
-      cardElement.querySelector('.popup__input_add_link').src = element.link;
-     element.name = cardNameAdd.value;
-     element.link = cardImageAdd.value;
-     
-  
-     console.log (element.name);
-    console.log (element.link);
-    elements.prepend(cardElement); 
-    closePopupAdd ();
-  }
-
-  
-  initialCards.forEach (function (element) {
-    const cardElement = cardTemplate.cloneNode(true);
-    cardElement.querySelector('.element__name').textContent = element.name;
-    cardElement.querySelector('.element__image').src = element.link;
-    
-    elements.append(cardElement); 
-  });*/
 
 
 
