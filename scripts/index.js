@@ -77,10 +77,8 @@ const initialCards = [
 
   const cardTemplate = document.querySelector('#element').content;
   const elements = document.querySelector('.elements')
-
-  function makeLike () {
-    elementHeart.classList.toggle('.element__heart_active');
-  }
+  const elementImage = element.querySelector('.element__image');
+  
 
   
   function createCard (name, link, alt) {
@@ -97,12 +95,22 @@ const initialCards = [
       evt.target.classList.add('element__heart_activ')
     });
 
-    elementDelete.addEventListener('click', (e) => {
-      e.target.closest('.element').remove()
+    elementDelete.addEventListener('click', (evt) => {
+      evt.target.closest('.element').remove()
     });
-    
-     elements.prepend(element);
 
+   
+    
+    elementImage.addEventListener('click', (evt) => {
+    /*  elementImage.src = src
+      elementImage.alt = alt
+      elementName.textContent = name*/
+      openPopup(popupAdd)
+    })
+
+     elements.prepend(element);
+     
+     return element;
   }
   initialCards.forEach (({name, link, alt}) => createCard(name, link, alt));
    
