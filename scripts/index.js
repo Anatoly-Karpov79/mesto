@@ -10,7 +10,7 @@ const formAdd = document.querySelector('#form__add');
 const popupEdit = document.querySelector('.popap__edit');
 const popupAdd = document.querySelector('.popup__add');
 const popupView = document.querySelector('.popup__view');
- 
+const popupViewCloseBtn = document.querySelector('.popup__view-close');
 
 function openPopup (event) {
   event.classList.add('popup_opened');
@@ -30,7 +30,7 @@ popupCloseButton.addEventListener ('click', () => closePopup(popupEdit) );
 
 addButton.addEventListener ('click', () => openPopup(popupAdd));
 popupAddCloseBtn.addEventListener ('click', () => closePopup(popupAdd));
-
+popupViewCloseBtn.addEventListener ('click', () => closePopup(popupView));
 
 let nameInput = document.querySelector ('.profile__name');
 let jobInput = document.querySelector ('.profile__profession');
