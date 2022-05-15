@@ -36,7 +36,7 @@ let nameInput = document.querySelector ('.profile__name');
 let jobInput = document.querySelector ('.profile__profession');
 
 
-function formSubmitHandler (evt) {
+function submitFormHandler (evt) {
     evt.preventDefault();
     nameInput.textContent = popupNameEdit.value;
     jobInput.textContent = popupJobEdit.value;
@@ -44,7 +44,7 @@ function formSubmitHandler (evt) {
     closePopup(popupEdit);
 }
 
-form.addEventListener ('submit', formSubmitHandler );
+form.addEventListener ('submit', submitFormHandler );
   
 
 const initialCards = [
