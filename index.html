@@ -28,21 +28,20 @@
     <section class="elements">
 
     </section>
-        <template id="element">
-            <div class="element"> 
-               <img class="element__image" src="" alt="Фото">
-               
-               <h2 class="element__name"></h2>
-               <button class="element__delete" type="button"></button>
-               <button class="element__heart" type="button"></button>
-               
-            </div>  
-        </template> 
-
     
+            
     <footer class="footer">
         <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
+
+    <template id="element">
+        <div class="element"> 
+           <img class="element__image" src="" alt="">
+           <h2 class="element__name"></h2>
+           <button class="element__delete" type="button"></button>
+           <button class="element__heart" type="button"></button>
+        </div>  
+    </template> 
 
     <div class="popup popap__edit">
       <div class="popup__container">
@@ -68,12 +67,16 @@
             </form>
         </div>   
       </div>    
-      <div class="popup popup__view">
-        <div class="popup__container">
-            <img class="popup__image" src="../mesto/images/mangup-kale.jpg" alt="Фото">
-        </div>   
-      </div>    
 
+      <div class="popup popup__view">
+          <div class="popup__view-contaner">
+             <button aria-label="Close" type="button" class="popup__close-popup popup__add-close"></button>
+             <figure class="popup__view-fig">
+                 <img class="popup__view-img" src="" alt="">
+                 <figcaption class="popup__view-name"></figcaption>
+             </figure> 
+          </div>   
+      </div>
       <script src="./scripts/index.js"></script>
 </body>
 </html>

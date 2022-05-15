@@ -32,7 +32,6 @@ addButton.addEventListener ('click', () => openPopup(popupAdd));
 popupAddCloseBtn.addEventListener ('click', () => closePopup(popupAdd));
 
 
-
 let nameInput = document.querySelector ('.profile__name');
 let jobInput = document.querySelector ('.profile__profession');
 
@@ -76,42 +75,46 @@ const initialCards = [
   ]; 
 
   const cardTemplate = document.querySelector('#element').content;
-  const elements = document.querySelector('.elements')
-  const elementImage = element.querySelector('.element__image');
+  const elements = document.querySelector('.elements');
+  const popupImage = document.querySelector('.popup__view-img');
+  const popupImageName = document.querySelector('.popup__view-name');
   
+  
+  function veiwImage (evt) {
+    console.dir(evt.target)
+    popupImage.src = evt.target.src;
+    popupImageName.textContent = evt.target.alt;
+    popupImage.alt = evt.target.alt
+    openPopup(popupView);
+    
+    
+  }
 
-  
   function createCard (name, link, alt) {
-    const element = cardTemplate.cloneNode(true);
+    const element = cardTemplate.querySelector('.element').cloneNode(true);
     const elementImage = element.querySelector('.element__image');
     const elementName = element.querySelector('.element__name');
     const elementHeart = element.querySelector('.element__heart');
     const elementDelete = element.querySelector('.element__delete');
-    elementImage.src = link;
+    
     elementName.textContent = name;
-    elementImage.alt = alt;
-
+    elementImage.src = link;
+    elementImage.alt = name;
+    
     elementHeart.addEventListener('click', (evt) => {
-      evt.target.classList.add('element__heart_activ')
+      evt.target.classList.add('element__heart_activ');
     });
 
     elementDelete.addEventListener('click', (evt) => {
-      evt.target.closest('.element').remove()
+      evt.target.closest('.element').remove();
     });
 
-   
-    
-    elementImage.addEventListener('click', (evt) => {
-    /*  elementImage.src = src
-      elementImage.alt = alt
-      elementName.textContent = name*/
-      openPopup(popupAdd)
-    })
+    elementImage.addEventListener ('click', veiwImage );
 
-     elements.prepend(element);
-     
-     return element;
+    elements.prepend(element);
+       
   }
+
   initialCards.forEach (({name, link, alt}) => createCard(name, link, alt));
    
   const cardNameAdd = document.querySelector('.popup__input_add_name');
@@ -134,7 +137,7 @@ const initialCards = [
 
    formAdd.addEventListener ('submit', submitAddHandler );
   
-
+   
 
 
 
