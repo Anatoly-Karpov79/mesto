@@ -7,9 +7,9 @@ let popupNameEdit = document.querySelector('.popup__input_type_name');
 let popupJobEdit = document.querySelector('.popup__input_type_job');
 const form = document.querySelector ('.form');
 const formAdd = document.querySelector('#form__add');
-const popupEdit = document.querySelector('.popap__edit');
-const popupAdd = document.querySelector('.popup__add');
-const popupView = document.querySelector('.popup__view');
+const popupEdit = document.querySelector('.popap_edit');
+const popupAdd = document.querySelector('.popup_add');
+const popupView = document.querySelector('.popup_view');
 const popupViewCloseBtn = document.querySelector('.popup__view-close');
 
 function openPopup (event) {
