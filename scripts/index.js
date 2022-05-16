@@ -1,16 +1,13 @@
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popup = document.querySelector('.popup');
-const popupCloseButton = document.querySelector('.popup__close-popup');
 const addButton = document.querySelector('.profile__add-button');
-const popupAddCloseBtn = document.querySelector('.popup__add-close');
-let popupNameEdit = document.querySelector('.popup__input_type_name');
-let popupJobEdit = document.querySelector('.popup__input_type_job');
-const form = document.querySelector ('.form');
+const popupNameEdit = document.querySelector('.popup__input_type_name');
+const popupJobEdit = document.querySelector('.popup__input_type_job');
+const formEdit = document.querySelector ('.form');
 const formAdd = document.querySelector('#form__add');
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
 const popupView = document.querySelector('.popup_view');
-const popupViewCloseBtn = document.querySelector('.popup__view-close');
 
 function openPopup (event) {
   event.classList.add('popup_opened');
@@ -25,15 +22,23 @@ function editProfile () {
     popupJobEdit.value = jobInput.textContent;
 }
 
+const popups = document.querySelectorAll('.popup')
+
+      popups.forEach((popup) => {
+          popup.addEventListener('click', (evt) => {
+             if (evt.target.classList.contains('popup__button-close')) {
+                closePopup(popup)
+              }
+          })
+      }) 
+
+
 popupOpenButton.addEventListener ('click', editProfile );
-popupCloseButton.addEventListener ('click', () => closePopup(popupEdit) );
 
 addButton.addEventListener ('click', () => openPopup(popupAdd));
-popupAddCloseBtn.addEventListener ('click', () => closePopup(popupAdd));
-popupViewCloseBtn.addEventListener ('click', () => closePopup(popupView));
 
-let nameInput = document.querySelector ('.profile__name');
-let jobInput = document.querySelector ('.profile__profession');
+const nameInput = document.querySelector ('.profile__name');
+const jobInput = document.querySelector ('.profile__profession');
 
 
 function submitFormHandler (evt) {
@@ -44,7 +49,7 @@ function submitFormHandler (evt) {
     closePopup(popupEdit);
 }
 
-form.addEventListener ('submit', submitFormHandler );
+formEdit.addEventListener ('submit', submitFormHandler );
   
 
 const initialCards = [
@@ -81,7 +86,6 @@ const initialCards = [
   
   
   function veiwImage (evt) {
-    console.dir(evt.target)
     popupImage.src = evt.target.src;
     popupImageName.textContent = evt.target.alt;
     popupImage.alt = evt.target.alt
@@ -91,18 +95,18 @@ const initialCards = [
   }
 
   function createCard (name, link, alt) {
-    const element = cardTemplate.querySelector('.element').cloneNode(true);
-    const elementImage = element.querySelector('.element__image');
-    const elementName = element.querySelector('.element__name');
-    const elementHeart = element.querySelector('.element__heart');
-    const elementDelete = element.querySelector('.element__delete');
+    const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
+    const elementImage = cardElement.querySelector('.element__image');
+    const elementName = cardElement.querySelector('.element__name');
+    const elementHeart = cardElement.querySelector('.element__heart');
+    const elementDelete = cardElement.querySelector('.element__delete');
     
     elementName.textContent = name;
     elementImage.src = link;
     elementImage.alt = name;
     
     elementHeart.addEventListener('click', (evt) => {
-      evt.target.classList.add('element__heart_activ');
+      evt.target.classList.toggle('element__heart_activ');
     });
 
     elementDelete.addEventListener('click', (evt) => {
@@ -111,12 +115,11 @@ const initialCards = [
 
     elementImage.addEventListener ('click', veiwImage );
 
-    elements.prepend(element);
-       
+    return cardElement
   }
 
-  initialCards.forEach (({name, link, alt}) => createCard(name, link, alt));
    
+
   const cardNameAdd = document.querySelector('.popup__input_add_name');
   const cardImageAdd = document.querySelector('.popup__input_add_link');
 
@@ -128,7 +131,7 @@ const initialCards = [
     const link = cardImageAdd.value;
     const alt = cardNameAdd.value;
 
-    createCard(name,link,alt);
+    insertCard(elements, createCard (name, link, alt));
 
    closePopup(popupAdd);
    formAdd.reset();
@@ -137,7 +140,14 @@ const initialCards = [
 
    formAdd.addEventListener ('submit', submitAddHandler );
   
-   
+   const insertCard = (elements, cardElement) => {
+    elements.prepend(cardElement);
+  }
+ 
+
+initialCards.forEach (({name, link, alt}) => {
+  insertCard(elements, createCard (name, link, alt) )
+})
 
 
 
