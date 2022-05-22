@@ -47,9 +47,11 @@
       <div class="popup__container">
           <button aria-label="Close" type="button" class="popup__close-popup popup__button-close"></button>
           <h3 class="popup__heading">Редактировать профиль</h3>
-          <form name="form" class="form">
+          <form name="form" class="form popup__form">
             <input type="text" class="popup__input popup__input_type_name" value="" name="name">
+            <span class="popup__input_type_error"></span>
             <input type="text" class="popup__input popup__input_type_job" value="" name="job">
+            <span class="popup__input_type_error"></span>
             <button type="submit" class="popup__button">Сохранить</button> 
           </form>
       </div>   
@@ -60,9 +62,11 @@
         <div class="popup__container">
             <button aria-label="Close" type="button" class="popup__close-popup popup__add-close popup__button-close"></button>
             <h3 class="popup__heading">Новое место</h3>
-            <form name="form__add" class="form" id="form__add">
+            <form name="form__add" class="form popup__form" id="form__add">
               <input type="text" class="popup__input popup__input_add_name" placeholder="Название"  name="name">
+              <span class="popup__input_type_error"></span>
               <input type="text" class="popup__input  popup__input_add_link" placeholder="Ссылка на картинку" name="link">
+              <span class="popup__input_type_error"></span>
               <button type="submit" class="popup__button">Создать</button> 
             </form>
         </div>   
