@@ -68,11 +68,13 @@
             <h3 class="popup__heading">Новое место</h3>
             <form name="form__add" class="form popup__form" id="form__add" novalidate>
                 <fieldset class="form__set">
-              <input type="text" class="popup__input popup__input_add_name" placeholder="Название"  name="name">
-              <span class="popup__input_type_error"></span>
-              <input type="text" class="popup__input  popup__input_add_link" placeholder="Ссылка на картинку" name="link">
-              <span class="popup__input_type_error"></span>
+                    <label class="form__field">
+              <input type="text" class="popup__input popup__input_add_name" id="name-input" placeholder="Название"  name="name" required minlength="2" maxlength="40">
+              <span class="popup__input_type_error name-input-error"></span>
+              <input type="url" class="popup__input  popup__input_add_link" id="url-input" placeholder="Ссылка на картинку" name="link" required minlength="2" maxlength="40">
+              <span class="popup__input_type_error url-input-error"></span>
               <button type="submit" class="popup__button">Создать</button> 
+              </label>
               </fieldset>
             </form>
         </div>   
