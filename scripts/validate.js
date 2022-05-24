@@ -1,13 +1,14 @@
+
 const showInputError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('.popup__input_type_error');
+    inputElement.classList.add('popup__input_type_error');
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('.popup__error_visible');
+    errorElement.classList.add('popup__error_visible');
   };
   
   const hideInputError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('.popup__input_type_error');
+    inputElement.classList.remove('popup__input_type_error');
     errorElement.classList.remove('popup__error_visible');
    errorElement.textContent = '';
   };
@@ -15,6 +16,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
   const checkInputValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
       showInputError(formElement, inputElement, inputElement.validationMessage);
+      
     } else {
       hideInputError(formElement, inputElement);
     }
@@ -23,17 +25,19 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     // Если есть хотя бы один невалидный инпут
     if (hasInvalidInput(inputList)) {
       // сделай кнопку неактивной
-      buttonElement.classList.add('.popup__button_disabled');
+      buttonElement.classList.add('popup__button_disabled');
+      
     } else {
       // иначе сделай кнопку активной
-      buttonElement.classList.remove('.popup__button_disabled');
+      buttonElement.classList.remove('popup__button_disabled');
+      
     }
   }; 
   
   const setEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
     const buttonElement = formElement.querySelector('.popup__button');
-    
+   
     toggleButtonState(inputList, buttonElement);
    
     inputList.forEach((inputElement) => {
