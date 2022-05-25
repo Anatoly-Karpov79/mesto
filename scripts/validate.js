@@ -26,11 +26,13 @@ const showInputError = (formElement, inputElement, errorMessage) => {
     if (hasInvalidInput(inputList)) {
       // сделай кнопку неактивной
       buttonElement.classList.add('popup__button_disabled');
-      
+      formAdd.removeEventListener('submit', submitAddHandler);
+      formEdit.removeEventListener('submit', submitFormHandler );
     } else {
       // иначе сделай кнопку активной
       buttonElement.classList.remove('popup__button_disabled');
-      
+      formAdd.addEventListener('submit', submitAddHandler);
+      formEdit.addEventListener ('submit', submitFormHandler );
     }
   }; 
   

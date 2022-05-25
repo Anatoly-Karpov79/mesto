@@ -30,7 +30,20 @@ const popups = document.querySelectorAll('.popup')
                 closePopup(popup)
               }
           })
-      }) 
+          document.addEventListener('keydown', function (evt) {
+            if (evt.key === 'Escape') {
+              closePopup(popup)
+            }
+          })
+          document.addEventListener('musedown', function (evt) {
+            if (evt.target !== popups) {
+              closePopup(popup)
+              console.log('Работает')
+         }
+        })
+      })
+         
+
 
 
 popupOpenButton.addEventListener ('click', editProfile );
@@ -148,7 +161,6 @@ const initialCards = [
 initialCards.forEach (({name, link, alt}) => {
   insertCard(elements, createCard (name, link, alt) )
 })
-
 
 
 
