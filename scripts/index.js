@@ -11,6 +11,7 @@ const popupView = document.querySelector('.popup_view');
 
 function openPopup (event) {
   event.classList.add('popup_opened');
+  
 }
 
 function closePopup (event) {
@@ -35,14 +36,21 @@ const popups = document.querySelectorAll('.popup')
               closePopup(popup)
             }
           })
-          document.addEventListener('musedown', function (evt) {
+       /*   document.addEventListener('musedown', function (evt) {
             if (evt.target !== popups) {
               closePopup(popup)
               console.log('Работает')
          }
-        })
+        })*/
       })
-         
+function closePopupOverlay () {
+  document.addEventListener('click', function (evt) {
+    if (evt.target !== popups) {
+      closePopup(popup)
+      console.log('Работает')
+ }
+})
+}
 
 
 
