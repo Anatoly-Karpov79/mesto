@@ -36,13 +36,13 @@ const popups = document.querySelectorAll('.popup')
               closePopup(popup)
             }
           })
-       /*   document.addEventListener('musedown', function (evt) {
-            if (evt.target !== popups) {
+          document.addEventListener('click', function (evt) {
+            if (evt.target === popup) {
               closePopup(popup)
-              console.log('Работает')
-         }
-        })*/
+           }
+        })
       })
+
 function closePopupOverlay () {
   document.addEventListener('click', function (evt) {
     if (evt.target !== popups) {
