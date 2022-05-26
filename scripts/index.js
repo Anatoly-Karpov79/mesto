@@ -43,14 +43,14 @@ const popups = document.querySelectorAll('.popup')
         })
       })
 
-function closePopupOverlay () {
+/*function closePopupOverlay () {
   document.addEventListener('click', function (evt) {
     if (evt.target !== popups) {
       closePopup(popup)
       console.log('Работает')
  }
 })
-}
+}*/
 
 
 
@@ -156,6 +156,7 @@ const initialCards = [
 
    closePopup(popupAdd);
    formAdd.reset();
+   formAdd.removeEventListener('submit', submitAddHandler);
   }
     
 
