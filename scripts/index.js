@@ -19,22 +19,23 @@ const popupImage = document.querySelector('.popup__view-img');
 const popupImageName = document.querySelector('.popup__view-name');
 
 
-const closePopupEsc = () => {
-  document.addEventListener('keydown', function (evt) {
-    if (evt.key === 'Escape') {
+const closePopupEsc = (evt, popup) => {
+   if (evt.key === 'Escape') {
       closePopup(popup)
       }
-   })
-}
+   }
 
-function openPopup (event) {
-  event.classList.add('popup_opened');
-  closePopupEsc;
+
+function openPopup (popup) {
+  popup.classList.add('popup_opened');
+  document.addEventListener('keydown', (evt) => closePopupEsc(evt, popup));
 }
 
 function closePopup (event) {
     event.classList.remove('popup_opened');
+    document.removeEventListener('keydown', (evt) => closePopupEsc(evt, popup));
 }
+
 function editProfile () {
   openPopup(popupEdit);
     popupNameEdit.value = nameInput.textContent;
