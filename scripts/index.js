@@ -17,23 +17,26 @@ const cardTemplate = document.querySelector('#element').content;
 const elements = document.querySelector('.elements');
 const popupImage = document.querySelector('.popup__view-img');
 const popupImageName = document.querySelector('.popup__view-name');
-
+const popupButton = document.querySelector('#popup__button-add');
 
 const closePopupEsc = (evt, popup) => {
    if (evt.key === 'Escape') {
-      closePopup(popup)
+    const popup = document.querySelector('.popup_opened')
+    closePopup(popup)
+      
       }
    }
 
 
 function openPopup (popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (evt) => closePopupEsc(evt, popup));
+ document.addEventListener('keydown', closePopupEsc);
+ // enableValidation();
 }
 
 function closePopup (event) {
     event.classList.remove('popup_opened');
-    document.removeEventListener('keydown', (evt) => closePopupEsc(evt, popup));
+    document.removeEventListener('keydown', closePopupEsc);
 }
 
 function editProfile () {
@@ -110,11 +113,13 @@ function submitAddHandler (evt) {
     const link = cardImageAdd.value;
     const alt = cardNameAdd.value;
 
-    insertCard(elements, createCard (name, link, alt));
+    insertCard(elements, createCard (name, link));
 
    closePopup(popupAdd);
    formAdd.reset();
+   
    formAdd.removeEventListener('submit', submitAddHandler);
+   popupButton.classList.toggle('popup__button_disabled');
   }
     
 
