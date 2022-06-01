@@ -9,7 +9,7 @@
             "type": "pwa-chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
-            "url": "file:///C:/project/mesto/index.html",
+            "url": "file:///d:/project/mesto/index.html",
             "webRoot": "${workspaceFolder}"
         }
     ]

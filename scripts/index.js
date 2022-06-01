@@ -35,9 +35,12 @@ const disableAddSubmitBtn = () => {
 function openPopup (popup) {
   popup.classList.add('popup_opened');
  document.addEventListener('keydown', closePopupEsc);
- disableAddSubmitBtn();
+ 
 }
-
+const openPopupAdd = () => {
+  openPopup(popupAdd);
+  disableAddSubmitBtn();
+}
 function closePopup (event) {
     event.classList.remove('popup_opened');
     document.removeEventListener('keydown', closePopupEsc);
@@ -66,7 +69,7 @@ popups.forEach((popup) => {
 
 popupOpenButton.addEventListener ('click', editProfile );
 
-addButton.addEventListener ('click', () => openPopup(popupAdd));
+addButton.addEventListener ('click', () => openPopupAdd());
 
 
 
