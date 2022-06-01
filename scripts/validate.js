@@ -7,18 +7,16 @@ const config = {
   inputErrorSelector: '.popup__input-error',
 }
 
-const showInputError = (formElement, inputElement, errorMessage) => {
+const showInputError = (formElement, inputElement, errorMessage, inputErrorClass) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.add('popup__input_type_error');
+    inputElement.classList.add(inputErrorClass);
     errorElement.textContent = errorMessage;
-    errorElement.classList.add('popup__error_visible');
   };
   
-  const hideInputError = (formElement, inputElement) => {
+  const hideInputError = (formElement, inputElement, inputErrorClass) => {
     const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-    inputElement.classList.remove('popup__input_type_error');
-    errorElement.classList.remove('popup__error_visible');
-   errorElement.textContent = '';
+    inputElement.classList.remove(inputErrorClass);
+    errorElement.textContent = '';
   };
   
   const checkInputValidity = (formElement, inputElement) => {
@@ -29,31 +27,32 @@ const showInputError = (formElement, inputElement, errorMessage) => {
       hideInputError(formElement, inputElement);
     }
   };
-  const toggleButtonState = (inputList, buttonElement) => {
+  const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => {
     // Если есть хотя бы один невалидный инпут
-    if (hasInvalidInput(inputList)) {
+    
+    if (hasInvalidInput(inputList, buttonElement, inactiveButtonClass)) {
       // сделай кнопку неактивной
-      buttonElement.classList.add('popup__button_disabled');
+      buttonElement.classList.add(inactiveButtonClass);
       formAdd.removeEventListener('submit', submitAddHandler);
       formEdit.removeEventListener('submit', submitFormHandler );
     } else {
       // иначе сделай кнопку активной
-      buttonElement.classList.remove('popup__button_disabled');
+      buttonElement.classList.remove(inactiveButtonClass);
       formAdd.addEventListener('submit', submitAddHandler);
       formEdit.addEventListener ('submit', submitFormHandler );
     }
   }; 
   
-  const setEventListeners = (formElement) => {
-    const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
-    const buttonElement = formElement.querySelector('.popup__button');
+  const setEventListeners = (formElement, {inputSelector, submitButtonSelector, inactiveButtonClass}) => {
+    const inputList = Array.from(formElement.querySelectorAll(inputSelector));
+    const buttonElement = formElement.querySelector(submitButtonSelector);
    
-    toggleButtonState(inputList, buttonElement);
+    toggleButtonState(inputList, buttonElement, inputSelector, inactiveButtonClass);
    
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', function () {
         checkInputValidity(formElement, inputElement);
-        toggleButtonState(inputList, buttonElement);
+        toggleButtonState(inputList, buttonElement, inactiveButtonClass);
       });
     });
   };
@@ -65,14 +64,7 @@ const showInputError = (formElement, inputElement, errorMessage) => {
       formElement.addEventListener('submit', function (evt) {
         evt.preventDefault();
       });
-      
-
-
-  const fieldsetList = Array.from(formElement.querySelectorAll('.form__set'));
-       fieldsetList.forEach((fieldSet) => {
-        setEventListeners(fieldSet);
-  }); 
-       //   setEventListeners(formElement);
+        setEventListeners(formElement, rest);
     });
   };
   
@@ -83,16 +75,6 @@ const showInputError = (formElement, inputElement, errorMessage) => {
       return !inputElement.validity.valid;
    })
   };
+
   enableValidation(config);
-  
-
-
-
-/*enableValidation({
-    formSelector: '.popup__form',
-    inputSelector: '.popup__input',
-    submitButtonSelector: '.popup__button',
-    inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error',
-    errorClass: 'popup__error_visible'
-  }); */
+ 
