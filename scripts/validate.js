@@ -33,13 +33,11 @@ const showInputError = (formElement, inputElement, errorMessage, inputErrorClass
     if (hasInvalidInput(inputList, buttonElement, inactiveButtonClass)) {
       // сделай кнопку неактивной
       buttonElement.classList.add(inactiveButtonClass);
-      formAdd.removeEventListener('submit', submitAddHandler);
-      formEdit.removeEventListener('submit', submitFormHandler );
+      buttonElement.disabled = true;
     } else {
       // иначе сделай кнопку активной
       buttonElement.classList.remove(inactiveButtonClass);
-      formAdd.addEventListener('submit', submitAddHandler);
-      formEdit.addEventListener ('submit', submitFormHandler );
+      buttonElement.disabled = false;
     }
   }; 
   

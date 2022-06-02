@@ -126,7 +126,7 @@ function submitAddHandler (evt) {
    closePopup(popupAdd);
    formAdd.reset();
    
-   formAdd.removeEventListener('submit', submitAddHandler);
+   
   
   }
     
