@@ -29,7 +29,8 @@ const closePopupEsc = (evt, popup) => {
    }
 
 const disableAddSubmitBtn = () => {
-    popupAddSubmitBtn.classList.toggle('popup__button_disabled');
+    popupAddSubmitBtn.classList.add('popup__button_disabled');
+    popupAddSubmitBtn.disabled = true;
 }
 
 function openPopup (popup) {
