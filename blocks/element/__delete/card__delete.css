@@ -1,4 +1,4 @@
-.element__delete {
+.card__delete {
     width: 18px;
     height: 19px;
     margin-right: 30px;
@@ -11,6 +11,6 @@
     border: none;
     transition: 0.3s;
 }
-.element__delete:hover {
+.card__delete:hover {
     opacity: .5;
 }
