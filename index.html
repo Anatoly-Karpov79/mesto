@@ -35,12 +35,12 @@
     </footer>
 
     <template id="element-card">
-        <article class="card"> 
-           <img class="cardt__image" src="#" alt="#">
+        <div class="card"> 
+           <img class="card__image" src="#" alt="#">
            <h2 class="card__name"></h2>
            <button class="card__delete" type="button"></button>
            <button class="card__heart" type="button"></button>
-        </article>  
+        </div>  
     </template> 
 
     <div class="popup popup_edit">
@@ -90,7 +90,9 @@
           </div>   
       </div>
       <script src="./scripts/cards.js"></script>
-      <script src="./scripts/index.js"></script>
+       <script type="module" src="./scripts/index.js"></script>
+      <script type="module" src="./scripts/card.js"></script>
+     
       <script src="./scripts/validate.js"></script>
       
 </body>

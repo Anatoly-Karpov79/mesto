@@ -13,12 +13,13 @@ const nameInput = document.querySelector ('.profile__name');
 const jobInput = document.querySelector ('.profile__profession');
 const cardNameAdd = document.querySelector('.popup__input_add_name');
 const cardImageAdd = document.querySelector('.popup__input_add_link');
-const cardTemplate = document.querySelector('#element').content;
+//const cardTemplate = document.querySelector('#element').content;
 const elements = document.querySelector('.elements');
 const popupImage = document.querySelector('.popup__view-img');
 const popupImageName = document.querySelector('.popup__view-name');
 const popupAddSubmitBtn = document.querySelector('#popup__button-add');
 
+import { Card } from './card.js';
 
 const closePopupEsc = (evt, popup) => {
    if (evt.key === 'Escape') {
@@ -91,7 +92,11 @@ formEdit.addEventListener ('submit', submitFormHandler );
   
   }
  
-  
+  function createCard (item) {
+    const card = new Card(item.name, item.link, item.image);
+    const cardElement = card.generateCard();
+    return cardElement;
+  }
 
 function submitAddHandler (evt) {
     evt.preventDefault();
@@ -100,7 +105,7 @@ function submitAddHandler (evt) {
     const link = cardImageAdd.value;
     const alt = cardNameAdd.value;
 
-    insertCard(elements, createCard (name, link));
+    insertCard(elements, createCard (item.name, item.link));
 
    closePopup(popupAdd);
    formAdd.reset();
@@ -108,6 +113,7 @@ function submitAddHandler (evt) {
    
   
   }
+
     
 
    formAdd.addEventListener ('submit', submitAddHandler );
@@ -116,10 +122,15 @@ const insertCard = (elements, cardElement) => {
     elements.prepend(cardElement);
   }
  
+  initialCards.forEach((item) => {
+    const card = new Card(item.name, item.link, item.image, item.heart);
+    const cardElement = card.generateCard();
+    document.querySelector('.elements').append(cardElement);
+  });
 
-initialCards.forEach (({name, link}) => {
-  insertCard(elements, createCard (name, link) )
-})
+//initialCards.forEach (({name, link}) => {
+ // insertCard(elements, createCard (name, link) )
+//})
 
 
 
