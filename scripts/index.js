@@ -87,8 +87,7 @@ formEdit.addEventListener ('submit', submitFormHandler );
 
   const insertCard = (cardElement) => {
    document.querySelector('.elements').prepend(cardElement);
-   console.log(cardElement)
-     
+        
   }
  
 

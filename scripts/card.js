@@ -4,9 +4,10 @@ export class Card {
     constructor (name, link) {
       this._name = name;
       this._link = link;
+      this.alt = name;
     }
     
-      _getTemplate() {
+    _getTemplate() {
         const cardElement = document
           .querySelector('#element-card')
           .content
@@ -14,74 +15,44 @@ export class Card {
           .cloneNode(true);
     
         return cardElement;
-      }
+    }
 
 
-      generateCard() {
-       
+    generateCard() {
         this._cardElement = this._getTemplate();
         this._setEventListeners();    
         this._cardElement.querySelector('.card__image').src = this._link;
         this._cardElement.querySelector('.card__name').textContent = this._name;
+        this._cardElement.querySelector('.card__image').alt = this._name;
 
         return this._cardElement;
-      }   
+    }   
 
-      _handleOpenPopup () {
-        console.log('попап появись');
-        console.log(this._link, this.name);
-        popupImage.src = this._link;
-        
-      //  popupImageName.textContent = this.name;
-        popupImage.alt = this.name;
-        openPopup(popupView);
-    
-    //    popupElement.classList.add('popup_is-opend');
-      }
-     _setEventListeners() {
-      this._cardElement.querySelector('.card__image').addEventListener('click', () => {
-       this._handleOpenPopup ();
+    _setEventListeners() {
+        this._cardElement.querySelector('.card__image').addEventListener('click', () => {
+        this._handleOpenPopup ();
       });
 
-      this._cardElement.querySelector('.card__heart').addEventListener('click', () => {
-        console.log('aaaaaa');
-        
+        this._cardElement.querySelector('.card__heart').addEventListener('click', () => {
+        this._handleHeartActiv ();
       });
-      this._cardElement.querySelector('.card__delete').addEventListener('click', () => {
-        console.log('fffffffffff');
+
+        this._cardElement.querySelector('.card__delete').addEventListener('click', () => {
+        this._handleDelete ();
       });
     }
 
+    _handleOpenPopup () {
+        popupImage.src = this._link;
+        popupImageName.textContent = this.alt;
+        openPopup(popupView);
+    }
 
-    /*  _setEventListeners() {
-        this._heart.addEventListener('click', () => {
-          console.log('Сердце работает');
-        this._handleOpenPopup ();// откройте попап
-      });*/
+    _handleHeartActiv () {
+        this._cardElement.querySelector('.card__heart').classList.toggle('card__heart_activ');
+    }
 
-    // добавить карточку в дом
-}
-
-/*function createCard (name, link) {
-   // const cardElement = cardTemplate.querySelector('.element').cloneNode(true);
-  //  const elementImage = cardElement.querySelector('.element__image');
-    const elementName = cardElement.querySelector('.element__name');
-    const elementHeart = cardElement.querySelector('.element__heart');
-    const elementDelete = cardElement.querySelector('.element__delete');
-    
-    elementName.textContent = name;
-    elementImage.src = link;
-    elementImage.alt = name;
-    
-    elementHeart.addEventListener('click', (evt) => {
-      evt.target.classList.toggle('element__heart_activ');
-    });
-
-    elementDelete.addEventListener('click', (evt) => {
-      evt.target.closest('.element').remove();
-    });
-
-    elementImage.addEventListener ('click', veiwImage );
-
-    return cardElement
-  */
+    _handleDelete () {
+        this._cardElement.remove();
+    }
+};
