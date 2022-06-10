@@ -4,7 +4,8 @@ export class Card {
     constructor (name, link) {
       this._name = name;
       this._link = link;
-      this.alt = name;
+      this._alt = name;
+      this.selector = '#element-card'
     }
     
     _getTemplate() {
@@ -44,7 +45,7 @@ export class Card {
 
     _handleOpenPopup () {
         popupImage.src = this._link;
-        popupImageName.textContent = this.alt;
+        popupImageName.textContent = this._alt;
         openPopup(popupView);
     }
 
