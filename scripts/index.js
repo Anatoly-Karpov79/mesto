@@ -20,6 +20,8 @@ const popupAddSubmitBtn = document.querySelector('#popup__button-add');
 
 import { Card } from './card.js';
 import { initialCards } from './cards.js';
+import { config } from './validate.js';
+ import { FormValidator } from './formValidator.js'
 
 const closePopupEsc = (evt, popup) => {
    if (evt.key === 'Escape') {
@@ -87,10 +89,8 @@ formEdit.addEventListener ('submit', submitFormHandler );
 
   const insertCard = (cardElement) => {
    document.querySelector('.elements').prepend(cardElement);
-        
-  }
+ }
  
-
 function submitAddHandler (evt) {
     evt.preventDefault();
    
@@ -101,12 +101,10 @@ function submitAddHandler (evt) {
     const card = new Card(name, link, alt);
     const cardElement = card.generateCard();
     insertCard(cardElement);
-    
-
-   closePopup(popupAdd);
-   formAdd.reset();
-  
+    closePopup(popupAdd);
+    formAdd.reset();
   }
+
    formAdd.addEventListener ('submit', submitAddHandler );
   
  initialCards.forEach(({name, link}) => {
@@ -116,7 +114,18 @@ function submitAddHandler (evt) {
   });
 
 
+  const formEditValidate = new FormValidator(formEdit, config);
+  formEditValidate.enableValidation();
 
+  const formAddValidate = new FormValidator(formAdd, config);
+  formAddValidate.enableValidation();
+    
+
+
+  
+  
+  
+ 
 
 
 
