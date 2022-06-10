@@ -1,9 +1,9 @@
+import {popupImage, popupView, popupImageName, openPopup} from './index.js';
 
 export class Card {
-    // создать карточку из шаблона
-    constructor (name, image) {
+    constructor (name, link) {
       this._name = name;
-      this._image = image;
+      this._link = link;
     }
     
       _getTemplate() {
@@ -21,24 +21,38 @@ export class Card {
        
         this._cardElement = this._getTemplate();
         this._setEventListeners();    
-        this._cardElement.querySelector('.card__image').src = this._image;
+        this._cardElement.querySelector('.card__image').src = this._link;
         this._cardElement.querySelector('.card__name').textContent = this._name;
-
-        this._heart = this._cardElement.querySelector('.card__heart');
-        // this.element.querySelector('.element__delete') = this._delete;
 
         return this._cardElement;
       }   
-    //  _handleOpenPopup () {
-      //  popupImage.src = this._image;
-     //   popupElement.classList.add('popup_is-opend');
-     // }
+
+      _handleOpenPopup () {
+        console.log('попап появись');
+        console.log(this._link, this.name);
+        popupImage.src = this._link;
+        
+      //  popupImageName.textContent = this.name;
+        popupImage.alt = this.name;
+        openPopup(popupView);
+    
+    //    popupElement.classList.add('popup_is-opend');
+      }
      _setEventListeners() {
       this._cardElement.querySelector('.card__image').addEventListener('click', () => {
-        console.log('djdjd')
-       // this._handleMessageClick();
+       this._handleOpenPopup ();
+      });
+
+      this._cardElement.querySelector('.card__heart').addEventListener('click', () => {
+        console.log('aaaaaa');
+        
+      });
+      this._cardElement.querySelector('.card__delete').addEventListener('click', () => {
+        console.log('fffffffffff');
       });
     }
+
+
     /*  _setEventListeners() {
         this._heart.addEventListener('click', () => {
           console.log('Сердце работает');

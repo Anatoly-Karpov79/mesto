@@ -7,19 +7,19 @@ const formEdit = document.querySelector ('.form');
 const formAdd = document.querySelector('#form__add');
 const popupEdit = document.querySelector('.popup_edit');
 const popupAdd = document.querySelector('.popup_add');
-const popupView = document.querySelector('.popup_view');
+export const popupView = document.querySelector('.popup_view');
 const popups = document.querySelectorAll('.popup')
 const nameInput = document.querySelector ('.profile__name');
 const jobInput = document.querySelector ('.profile__profession');
 const cardNameAdd = document.querySelector('.popup__input_add_name');
 const cardImageAdd = document.querySelector('.popup__input_add_link');
-//const cardTemplate = document.querySelector('#element').content;
 const elements = document.querySelector('.elements');
-const popupImage = document.querySelector('.popup__view-img');
-const popupImageName = document.querySelector('.popup__view-name');
+export const popupImage = document.querySelector('.popup__view-img');
+export const popupImageName = document.querySelector('.popup__view-name');
 const popupAddSubmitBtn = document.querySelector('#popup__button-add');
 
 import { Card } from './card.js';
+import { initialCards } from './cards.js';
 
 const closePopupEsc = (evt, popup) => {
    if (evt.key === 'Escape') {
@@ -34,7 +34,7 @@ const disableAddSubmitBtn = () => {
     popupAddSubmitBtn.disabled = true;
 }
 
-function openPopup (popup) {
+export function openPopup (popup) {
   popup.classList.add('popup_opened');
  document.addEventListener('keydown', closePopupEsc);
  
@@ -84,19 +84,13 @@ function submitFormHandler (evt) {
 
 formEdit.addEventListener ('submit', submitFormHandler );
  
-  function veiwImage (evt) {
-    popupImage.src = evt.target.src;
-    popupImageName.textContent = evt.target.alt;
-    popupImage.alt = evt.target.alt
-    openPopup(popupView);
-  
+
+  const insertCard = (cardElement) => {
+   document.querySelector('.elements').prepend(cardElement);
+   console.log(cardElement)
+     
   }
  
-  function createCard (item) {
-    const card = new Card(item.name, item.link, item.image);
-    const cardElement = card.generateCard();
-    return cardElement;
-  }
 
 function submitAddHandler (evt) {
     evt.preventDefault();
@@ -104,33 +98,24 @@ function submitAddHandler (evt) {
     const name = cardNameAdd.value;
     const link = cardImageAdd.value;
     const alt = cardNameAdd.value;
-
-    insertCard(elements, createCard (item.name, item.link));
+    
+    const card = new Card(name, link, alt);
+    const cardElement = card.generateCard();
+    insertCard(cardElement);
+    
 
    closePopup(popupAdd);
    formAdd.reset();
-   
-   
   
   }
-
-    
-
    formAdd.addEventListener ('submit', submitAddHandler );
   
-const insertCard = (elements, cardElement) => {
-    elements.prepend(cardElement);
-  }
- 
-  initialCards.forEach((item) => {
-    const card = new Card(item.name, item.link, item.image, item.heart);
+ initialCards.forEach(({name, link}) => {
+    const card = new Card(name, link);
     const cardElement = card.generateCard();
-    document.querySelector('.elements').append(cardElement);
+    insertCard (cardElement);
   });
 
-//initialCards.forEach (({name, link}) => {
- // insertCard(elements, createCard (name, link) )
-//})
 
 
 
