@@ -1,5 +1,7 @@
+// Импортируем данные
 import {popupImage, popupView, popupImageName, openPopup} from './index.js';
 
+// Создаем класс
 export class Card {
     constructor (name, link) {
       this._name = name;
@@ -7,7 +9,7 @@ export class Card {
       this._alt = name;
       this.selector = '#element-card'
     }
-    
+// Находим шаблон для карточек    
     _getTemplate() {
         const cardElement = document
           .querySelector('#element-card')
@@ -18,7 +20,7 @@ export class Card {
         return cardElement;
     }
 
-
+// Создаем карточку
     generateCard() {
         this._cardElement = this._getTemplate();
         this._setEventListeners();    
@@ -28,7 +30,7 @@ export class Card {
 
         return this._cardElement;
     }   
-
+// Устанавливаем слушатели
     _setEventListeners() {
         this._cardElement.querySelector('.card__image').addEventListener('click', () => {
         this._handleOpenPopup ();
