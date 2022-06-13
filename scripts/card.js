@@ -44,17 +44,17 @@ export class Card {
         this._handleDelete ();
       });
     }
-
+// Открытие попапа просмотра картинки
     _handleOpenPopup () {
         popupImage.src = this._link;
         popupImageName.textContent = this._alt;
         openPopup(popupView);
     }
-
+// ставим лайк
     _handleHeartActiv () {
         this._cardElement.querySelector('.card__heart').classList.toggle('card__heart_activ');
     }
-
+// нажатие на корзину
     _handleDelete () {
         this._cardElement.remove();
     }

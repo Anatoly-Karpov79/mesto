@@ -1,6 +1,4 @@
-
-
-
+// создаем класс для валидации
 export class FormValidator {
     constructor (formElement, config) {
         this._formSelector = config.formSelector;
@@ -13,27 +11,27 @@ export class FormValidator {
         this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
         this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
       };
-
+// запуск валидации
       enableValidation() {
         this._formElement.addEventListener('submit', (event) => {
           event.preventDefault();
         });
         this._setEventListeners();
       }
-
+// показать ошибку
       _showInputError (inputElement) {
         
         const _errorElement = this._formElement.querySelector (`.${inputElement.id}-error`);
         inputElement.classList.add(this._inputErrorClass);
         _errorElement.textContent  = inputElement.validationMessage;
       };
-      
+// скрыть ошибку      
       _hideInputError (inputElement) {
         const _errorElement = this._formElement.querySelector(`.${inputElement.id}-error`);
         inputElement.classList.remove(this._inputErrorClass);
         _errorElement.textContent = ' ';
       };
-      
+// проверка на валидность      
       _checkInputValidity (inputElement)  {
         if (!inputElement.validity.valid) {
           this._showInputError(inputElement, inputElement.validationMessage);
@@ -42,7 +40,7 @@ export class FormValidator {
           this._hideInputError(inputElement);
         }
       };
-
+// работа с кнопкой Сохранить
       _toggleButtonState ()  {
                 
         if (this._hasInvalidInput()) {
@@ -56,7 +54,7 @@ export class FormValidator {
           this._buttonElement.disabled = false;
         }
       }; 
-      
+// устанавливаем слушатели     
       _setEventListeners() {
         this._toggleButtonState();
         this._inputList.forEach((inputElement) => {
@@ -67,7 +65,7 @@ export class FormValidator {
         });
       }
       
-      
+// проверка инпутов      
       _hasInvalidInput () {
         return this._inputList.some((inputElement) => {
           
