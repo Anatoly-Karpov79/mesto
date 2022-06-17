@@ -6,7 +6,6 @@ export class Card {
     constructor (name, link) {
       this._name = name;
       this._link = link;
-      this._alt = name;
       this.selector = '#element-card'
     }
 // Находим шаблон для карточек    
@@ -26,8 +25,7 @@ export class Card {
         this._setEventListeners();    
         this._cardElement.querySelector('.card__image').src = this._link;
         this._cardElement.querySelector('.card__name').textContent = this._name;
-        this._cardElement.querySelector('.card__image').alt = this._name;
-
+     
         return this._cardElement;
     }   
 // Устанавливаем слушатели
@@ -47,7 +45,8 @@ export class Card {
 // Открытие попапа просмотра картинки
     _handleOpenPopup () {
         popupImage.src = this._link;
-        popupImageName.textContent = this._alt;
+        popupImage.alt = this._name;
+        popupImageName.textContent = this._name;
         openPopup(popupView);
     }
 // ставим лайк
@@ -57,5 +56,6 @@ export class Card {
 // нажатие на корзину
     _handleDelete () {
         this._cardElement.remove();
+        this._cardElement = null;
     }
 };

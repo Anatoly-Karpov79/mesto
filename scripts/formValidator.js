@@ -13,14 +13,14 @@ export class FormValidator {
       };
 // запуск валидации
       enableValidation() {
+
         this._formElement.addEventListener('submit', (event) => {
           event.preventDefault();
         });
         this._setEventListeners();
-      }
+        }
 // показать ошибку
       _showInputError (inputElement) {
-        
         const _errorElement = this._formElement.querySelector (`.${inputElement.id}-error`);
         inputElement.classList.add(this._inputErrorClass);
         _errorElement.textContent  = inputElement.validationMessage;
@@ -42,18 +42,22 @@ export class FormValidator {
       };
 // работа с кнопкой Сохранить
       _toggleButtonState ()  {
-                
+        
         if (this._hasInvalidInput()) {
-          // сделай кнопку неактивной
-          this._buttonElement.classList.add(this._inactiveButtonClass);
-          this._buttonElement.disabled = true;
+    // сделай кнопку неактивной
+         this.disableAddSubmitBtn ();
         } else {
-          // иначе сделай кнопку активной
+    // иначе сделай кнопку активной
 
           this._buttonElement.classList.remove(this._inactiveButtonClass);
           this._buttonElement.disabled = false;
         }
       }; 
+// Отключатель кнопки Сохранить
+       disableAddSubmitBtn ()  {
+          this._buttonElement.classList.add(this._inactiveButtonClass);
+          this._buttonElement.disabled = true;
+}
 // устанавливаем слушатели     
       _setEventListeners() {
         this._toggleButtonState();

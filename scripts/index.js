@@ -19,8 +19,7 @@ const popupAddSubmitBtn = document.querySelector('#popup__button-add');
 
 // Импортируем данные из модулей
 import { Card } from './card.js';
-import { initialCards } from './cards.js';
-import { config } from './validate.js';
+import { initialCards, config } from './data.js';
 import { FormValidator } from './formValidator.js'
 
 // Открытие попапов
@@ -41,18 +40,6 @@ const closePopupEsc = (evt) => {
     const popup = document.querySelector('.popup_opened')
     closePopup(popup)
   }
-}
-
-// Отключатель кнопки Сохранить
-const disableAddSubmitBtn = () => {
-    popupAddSubmitBtn.classList.add('popup__button_disabled');
-    popupAddSubmitBtn.disabled = true;
-}
-
-// Открытие попапа добавить картинку
-const openPopupAdd = () => {
-  openPopup(popupAdd);
-  disableAddSubmitBtn();
 }
 
 // Открытие попапа редактирование профиля
@@ -101,7 +88,7 @@ const creatCard  = (name, link) => {
 }
 // Вставляем карточку
 const insertCard = (name, link) => {
-   document.querySelector('.elements').prepend(creatCard(name, link));
+   elements.prepend(creatCard(name, link));
 
 }
 
@@ -129,3 +116,9 @@ formEditValidate.enableValidation();
 
 const formAddValidate = new FormValidator(formAdd, config);
 formAddValidate.enableValidation();
+
+// Открытие попапа добавить картинку
+const openPopupAdd = () => {
+  openPopup(popupAdd);
+  formAddValidate.disableAddSubmitBtn();
+}
