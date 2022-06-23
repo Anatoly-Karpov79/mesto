@@ -21,6 +21,7 @@ const popupAddSubmitBtn = document.querySelector('#popup__button-add');
 import { Card } from './card.js';
 import { initialCards, config } from './data.js';
 import { FormValidator } from './formValidator.js'
+import Section from './Section.js';
 
 // Открытие попапов
 export function openPopup (popup) {
@@ -80,12 +81,27 @@ addButton.addEventListener ('click', () => openPopupAdd());
 formEdit.addEventListener ('submit', submitFormHandler );
 formAdd.addEventListener ('submit', submitAddHandler );
 
+
 // Создание новой карточки
 const creatCard  = (name, link) => {
     const card = new Card(name, link);
     const cardElement = card.generateCard();
     return cardElement;
 }
+
+const cardList = new Section({
+  initialCards,
+  renderer: (item) => {
+    const card = new Card(item, '#element-card');
+
+      const cardElement = card.generateCard();
+
+      cardList.setItem(cardElement);
+      console.log('khkhkjh')
+  },
+}, elements);
+
+
 // Вставляем карточку
 const insertCard = (name, link) => {
    elements.prepend(creatCard(name, link));
@@ -104,6 +120,8 @@ function submitAddHandler (evt) {
     closePopup(popupAdd);
     formAdd.reset();
 }
+
+
 
 // Создаем карточки из массива и вставляем в DOM
 initialCards.forEach(({name, link}) => {
