@@ -81,33 +81,33 @@ addButton.addEventListener ('click', () => openPopupAdd());
 formEdit.addEventListener ('submit', submitFormHandler );
 formAdd.addEventListener ('submit', submitAddHandler );
 
-
+/*
 // Создание новой карточки
 const creatCard  = (name, link) => {
     const card = new Card(name, link);
     const cardElement = card.generateCard();
     return cardElement;
 }
-
-const cardList = new Section({
-  initialCards,
+*/
+const cardList = new Section ( {
+  items: initialCards,
   renderer: (item) => {
     const card = new Card(item, '#element-card');
 
       const cardElement = card.generateCard();
 
-      cardList.setItem(cardElement);
-      console.log('khkhkjh')
+      cardList.addItem(cardElement);
+      
   },
 }, elements);
 
-
+/*
 // Вставляем карточку
 const insertCard = (name, link) => {
    elements.prepend(creatCard(name, link));
 
 }
-
+*/
 // Создаем и вставляем новую карточку из попапа Добавить
 function submitAddHandler (evt) {
     evt.preventDefault();
@@ -122,11 +122,11 @@ function submitAddHandler (evt) {
 }
 
 
-
+/*
 // Создаем карточки из массива и вставляем в DOM
 initialCards.forEach(({name, link}) => {
      insertCard (name, link);
-});
+}); */
 
 // Включаем валидацию для попапов
 const formEditValidate = new FormValidator(formEdit, config);
@@ -140,3 +140,5 @@ const openPopupAdd = () => {
   openPopup(popupAdd);
   formAddValidate.disableAddSubmitBtn();
 }
+
+cardList.renderItems();

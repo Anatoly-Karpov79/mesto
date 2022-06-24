@@ -3,9 +3,9 @@ import {popupImage, popupView, popupImageName, openPopup} from './index.js';
 
 // Создаем класс
 export class Card {
-    constructor (name, link) {
-      this._name = name;
-      this._link = link;
+    constructor (item) {
+      this._name = item.name;
+      this._link = item.link;
       this.selector = '#element-card'
     }
 // Находим шаблон для карточек    
