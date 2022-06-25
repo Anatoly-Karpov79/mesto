@@ -1,5 +1,6 @@
 // Импортируем данные
-import {popupImage, popupView, popupImageName, openPopup} from './index.js';
+import {popupImage, popupView, popupImageName} from './data.js';
+//import {newOpenPopup } from './index.js'
 
 // Создаем класс
 export class Card {
@@ -47,7 +48,7 @@ export class Card {
         popupImage.src = this._link;
         popupImage.alt = this._name;
         popupImageName.textContent = this._name;
-        openPopup(popupView);
+  //      newOpenPopup(popupView);
     }
 // ставим лайк
     _handleHeartActiv () {

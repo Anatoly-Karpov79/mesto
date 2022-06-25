@@ -1,28 +1,33 @@
-const popupOpenButton = document.querySelector('.profile__edit-button');
-const addButton = document.querySelector('.profile__add-button');
-const popupNameEdit = document.querySelector('.popup__input_type_name');
-const popupJobEdit = document.querySelector('.popup__input_type_job');
-const formEdit = document.querySelector ('.form');
-const formAdd = document.querySelector('#form__add');
-const popupEdit = document.querySelector('.popup_edit');
-const popupAdd = document.querySelector('.popup_add');
-export const popupView = document.querySelector('.popup_view');
-const popups = document.querySelectorAll('.popup')
-const nameInput = document.querySelector ('.profile__name');
-const jobInput = document.querySelector ('.profile__profession');
-const cardNameAdd = document.querySelector('.popup__input_add_name');
-const cardImageAdd = document.querySelector('.popup__input_add_link');
-const elements = document.querySelector('.elements');
-export const popupImage = document.querySelector('.popup__view-img');
-export const popupImageName = document.querySelector('.popup__view-name');
-const popupAddSubmitBtn = document.querySelector('#popup__button-add');
+
 
 // Импортируем данные из модулей
+
 import { Card } from './card.js';
 import { initialCards, config } from './data.js';
 import { FormValidator } from './formValidator.js'
 import Section from './Section.js';
+import { popupOpenButton,
+  addButton,
+  popupNameEdit,
+  popupJobEdit,
+  formEdit,
+  formAdd,
+  popupEdit,
+  popupAdd,
+  popupView,
+  popups,
+  nameInput,
+  cardNameAdd,
+  cardImageAdd,
+  elements,
+  jobInput,
+  popupImage,
+  popupImageName,
+  popupAddSubmitBtn
+} from './data.js'
+import Popup from './Popup.js';
 
+/*
 // Открытие попапов
 export function openPopup (popup) {
   popup.classList.add('popup_opened');
@@ -34,6 +39,7 @@ function closePopup (event) {
   event.classList.remove('popup_opened');
   document.removeEventListener('keydown', closePopupEsc);
 }
+*/
 
 // Закрытие попапов по Esc
 const closePopupEsc = (evt) => {
@@ -43,9 +49,13 @@ const closePopupEsc = (evt) => {
   }
 }
 
+
 // Открытие попапа редактирование профиля
 function editProfile () {
-  openPopup(popupEdit);
+const newOpenPopup = new Popup (popupEdit);
+newOpenPopup.openPopup(popupEdit);
+newOpenPopup.setEventListeners(popupEdit);
+//  openPopup(popupEdit);
     popupNameEdit.value = nameInput.textContent;
     popupJobEdit.value = jobInput.textContent;
 }
@@ -57,7 +67,7 @@ function submitFormHandler (evt) {
   jobInput.textContent = popupJobEdit.value;
   closePopup(popupEdit);
 }
-
+/*
 // Слушатель на все крестики для закрытия попапа
 popups.forEach((popup) => {
   popup.addEventListener('click', (evt) => {
@@ -72,7 +82,7 @@ popups.forEach((popup) => {
      }
    });
 });
-
+*/
 // Слушатели на кнопки открытия попапов
 popupOpenButton.addEventListener ('click', editProfile );
 addButton.addEventListener ('click', () => openPopupAdd());
@@ -89,6 +99,7 @@ const creatCard  = (name, link) => {
     return cardElement;
 }
 */
+
 const cardList = new Section ( {
   items: initialCards,
   renderer: (item) => {
@@ -100,6 +111,20 @@ const cardList = new Section ( {
       
   },
 }, elements);
+
+cardList.renderItems();
+/*
+const addNewCard = new Section ( {
+  items: newPopupCard,
+  renderer: (item) => {
+    const card = new Card(item, '#element-card');
+
+    const cardElement = card.generateCard();
+
+    cardList.addItem(cardElement);
+  }
+}, elements);
+*/
 
 /*
 // Вставляем карточку
@@ -134,11 +159,11 @@ formEditValidate.enableValidation();
 
 const formAddValidate = new FormValidator(formAdd, config);
 formAddValidate.enableValidation();
-
+/*
 // Открытие попапа добавить картинку
 const openPopupAdd = () => {
   openPopup(popupAdd);
   formAddValidate.disableAddSubmitBtn();
 }
-
+*/
 cardList.renderItems();
