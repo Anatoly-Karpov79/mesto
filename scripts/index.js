@@ -27,27 +27,8 @@ import { popupOpenButton,
 } from './data.js'
 import Popup from './Popup.js';
 
-/*
-// Открытие попапов
-export function openPopup (popup) {
-  popup.classList.add('popup_opened');
- document.addEventListener('keydown', closePopupEsc);
-}
 
-// Закрытие попапов
-function closePopup (event) {
-  event.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closePopupEsc);
-}
-*/
 
-// Закрытие попапов по Esc
-const closePopupEsc = (evt) => {
-  if (evt.key === 'Escape') {
-    const popup = document.querySelector('.popup_opened')
-    closePopup(popup)
-  }
-}
 
 
 // Открытие попапа редактирование профиля

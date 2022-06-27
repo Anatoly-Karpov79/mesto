@@ -2,10 +2,15 @@ import {popupCloseBtn} from './data.js'
 export default class Popup {
     constructor (popupSelector) {
         this._popupSelector = popupSelector;
+       // this._popup = document.querySelector(this.popupSelector);
+        this._popupCloseBtn = this._popupSelector.querySelector('.popup__close-popup');
     }
 
     openPopup () {
         this._popupSelector.classList.add('popup_opened');
+        console.log(this._popupSelector)
+        console.log(this._popupCloseBtn)
+        document.addEventListener('keydown', this._handleEscClose);
     };
 
     closePopup () {
@@ -13,17 +18,23 @@ export default class Popup {
 
     };
 
-    _handleEscClose () {
+    _handleEscClose = (event) => {
+                
+        if (event.key === 'Escape') {
+          this.closePopup();
+            };
+    }
 
-    };
-
+     
     setEventListeners () {
-        popupCloseBtn.addEventListener('click', (evt) => {
-            if (evt.target.classList.contains('popup__button-close')) {
-                console.log('Меня нажали');
-               this.closePopup();
-            }
-          });
+        this._popupCloseBtn.addEventListener('click', () => {
+            this.closePopup();
+        });
+        this._popupSelector.addEventListener('mousedown', () => {
+            this.closePopup();
+        });
+    }
+          
    
-        }
+        
 }
