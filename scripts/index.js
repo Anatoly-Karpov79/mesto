@@ -72,25 +72,19 @@ addButton.addEventListener ('click', () => openPopupAdd());
 formEdit.addEventListener ('submit', submitFormHandler );
 formAdd.addEventListener ('submit', submitAddHandler );
 
-/*
+
 // Создание новой карточки
-const creatCard  = (name, link) => {
-    const card = new Card(name, link);
-    const cardElement = card.generateCard();
-    return cardElement;
-}
-*/
+const creatCard  = (item) => {
+    const card = new Card(item, '#element-card');
+      const cardElement = card.generateCard();
+      cardList.addItem(cardElement);
+  }
+
+
 
 const cardList = new Section ( {
   items: initialCards,
-  renderer: (item) => {
-    const card = new Card(item, '#element-card');
-
-      const cardElement = card.generateCard();
-
-      cardList.addItem(cardElement);
-      
-  },
+  renderer: creatCard,
 }, elements);
 
 cardList.renderItems();

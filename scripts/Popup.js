@@ -1,4 +1,4 @@
-import {popupCloseBtn} from './data.js'
+//import {popupCloseBtn} from './data.js'
 export default class Popup {
     constructor (popupSelector) {
         this._popupSelector = popupSelector;

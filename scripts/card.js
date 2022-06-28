@@ -7,7 +7,7 @@ export class Card {
     constructor (item) {
       this._name = item.name;
       this._link = item.link;
-      this.selector = '#element-card'
+ //     this.selector = '#element-card'
     }
 // Находим шаблон для карточек    
     _getTemplate() {
