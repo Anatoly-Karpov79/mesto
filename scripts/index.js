@@ -6,6 +6,7 @@ import { Card } from './card.js';
 import { initialCards, config } from './data.js';
 import { FormValidator } from './formValidator.js'
 import Section from './Section.js';
+import PopupWithImage from './PopupWithImage.js';
 import { popupOpenButton,
   addButton,
   popupNameEdit,
@@ -88,6 +89,8 @@ const cardList = new Section ( {
 }, elements);
 
 cardList.renderItems();
+
+
 /*
 const addNewCard = new Section ( {
   items: newPopupCard,
@@ -141,4 +144,3 @@ const openPopupAdd = () => {
   formAddValidate.disableAddSubmitBtn();
 }
 */
-cardList.renderItems();

@@ -1,12 +1,14 @@
 // Импортируем данные
 import {popupImage, popupView, popupImageName} from './data.js';
 //import {newOpenPopup } from './index.js'
-
+import PopupWithImage from './PopupWithImage.js';
 // Создаем класс
 export class Card {
-    constructor (item) {
+    constructor (item, popupSelector, handleCardClick) {
       this._name = item.name;
       this._link = item.link;
+      this._popupSelector = popupSelector;
+      this._handleCardClick = handleCardClick;
  //     this.selector = '#element-card'
     }
 // Находим шаблон для карточек    
@@ -29,12 +31,19 @@ export class Card {
      
         return this._cardElement;
     }   
+// Открытие попапа просмотра картинки
+    
+handleCardClick = () => {
+    const imagePopup = new PopupWithImage(popupView, this._name, this._link);
+       imagePopup.openPopup(this._name, this._link);
+       imagePopup.setEventListeners(popupView);
+};
+
 // Устанавливаем слушатели
     _setEventListeners() {
         this._cardElement.querySelector('.card__image').addEventListener('click', () => {
-        this._handleOpenPopup ();
-      });
-
+           this.handleCardClick(this._name, this._link);
+        });
         this._cardElement.querySelector('.card__heart').addEventListener('click', () => {
         this._handleHeartActiv ();
       });
@@ -43,13 +52,11 @@ export class Card {
         this._handleDelete ();
       });
     }
-// Открытие попапа просмотра картинки
-    _handleOpenPopup () {
-        popupImage.src = this._link;
-        popupImage.alt = this._name;
-        popupImageName.textContent = this._name;
-  //      newOpenPopup(popupView);
-    }
+
+
+
+
+    
 // ставим лайк
     _handleHeartActiv () {
         this._cardElement.querySelector('.card__heart').classList.toggle('card__heart_activ');
