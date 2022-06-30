@@ -27,50 +27,70 @@ import { popupOpenButton,
   popupAddSubmitBtn
 } from './data.js'
 import Popup from './Popup.js';
+import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 
-
+const profileInfo = new UserInfo({
+  name: '.profile__name',
+  job: '.profile__profession'
+})
 
 
 // Открытие попапа редактирование профиля
-function editProfile () {
-const newOpenPopup = new Popup (popupEdit);
-newOpenPopup.openPopup(popupEdit);
-newOpenPopup.setEventListeners(popupEdit);
-//  openPopup(popupEdit);
-    popupNameEdit.value = nameInput.textContent;
-    popupJobEdit.value = jobInput.textContent;
-}
+function openEditPopup () {
+const editProfile = new PopupWithForm (popupEdit);
+const userData = profileInfo.getUserInfo();
+console.log(profileInfo.getUserInfo())
+popupNameEdit.value = nameInput.textContent;
+popupJobEdit.value = userData.job;
 
+
+  
+  editProfile.open();
+}
+//newOpenPopup.openPopup(popupEdit);
+//newOpenPopup.setEventListeners(popupEdit);
+//const profile = UserInfo.getUserInfo();
+
+//newOpenPopup.setInputValues(profile);
+
+/*
+//  openPopup(popupEdit);
+ //   
+ //   popupJobEdit.value = jobInput.textContent;
+}
+*/
+/*
+function openProfile() {
+ // formValidators[formProfileElement.getAttribute('name')].resetValidation();
+  const profile = userInfo.getUserInfo();
+  formProfileUser.setInputValues(profile);
+  formProfileUser.open();
+};*/
+/*
 // Редактирование профиля
+const formProfileUser = new PopupWithForm({
+  popupSelector: ('.popup_profile'),
+  handleFormSubmit: (item) => {
+      userInfo.setUserInfo(item);
+  }
+});*/
+/*
 function submitFormHandler (evt) {
   evt.preventDefault();
   nameInput.textContent = popupNameEdit.value;
   jobInput.textContent = popupJobEdit.value;
-  closePopup(popupEdit);
-}
-/*
-// Слушатель на все крестики для закрытия попапа
-popups.forEach((popup) => {
-  popup.addEventListener('click', (evt) => {
-     if (evt.target.classList.contains('popup__button-close')) {
-        closePopup(popup)
-     }
-   });
-  
-  document.addEventListener('click', function (evt) {
-     if (evt.target === popup) {
-        closePopup(popup)
-     }
-   });
-});
-*/
+
+ // closePopup(popupEdit);
+}*/
+
 // Слушатели на кнопки открытия попапов
-popupOpenButton.addEventListener ('click', editProfile );
-addButton.addEventListener ('click', () => openPopupAdd());
+popupOpenButton.addEventListener ('click', () => openEditPopup());
+//addButton.addEventListener ('click', () => openPopupAdd());
 
 // Слушатели на кнопки Сохранить в попапах
-formEdit.addEventListener ('submit', submitFormHandler );
+//formEdit.addEventListener ('submit', submitFormHandler );
 formAdd.addEventListener ('submit', submitAddHandler );
 
 
