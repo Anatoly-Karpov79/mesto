@@ -36,46 +36,44 @@ const profileInfo = new UserInfo({
   job: '.profile__profession'
 })
 
-
+/*
 // Открытие попапа редактирование профиля
 function openEditPopup () {
 const editProfile = new PopupWithForm (popupEdit);
 const userData = profileInfo.getUserInfo();
-console.log(profileInfo.getUserInfo())
 popupNameEdit.value = nameInput.textContent;
 popupJobEdit.value = userData.job;
 
-
-  
   editProfile.open();
-}
-//newOpenPopup.openPopup(popupEdit);
-//newOpenPopup.setEventListeners(popupEdit);
-//const profile = UserInfo.getUserInfo();
+}*/ 
 
-//newOpenPopup.setInputValues(profile);
-
+const editProfile = new PopupWithForm({
+  
+  popupSelector: popupEdit,
+  
+  submitFormHandler: (formData) => {
+    console.log('gjgjhgkjgh');
+ //   evt.preventDefault();
+ //   const inputList = editProfile.getInputValues()
+ //   nameInput.textContent = inputList.name
+ //   userData.textContent = inputList.about
+     profileInfo.setUserInfo({
+      userName: formData.userName,
+      userJob: formData.userJob
+    });
+    
+    editProfile.close();
+  }
+});
+editProfile.setEventListeners();
 /*
 //  openPopup(popupEdit);
  //   
  //   popupJobEdit.value = jobInput.textContent;
 }
 */
-/*
-function openProfile() {
- // formValidators[formProfileElement.getAttribute('name')].resetValidation();
-  const profile = userInfo.getUserInfo();
-  formProfileUser.setInputValues(profile);
-  formProfileUser.open();
-};*/
-/*
-// Редактирование профиля
-const formProfileUser = new PopupWithForm({
-  popupSelector: ('.popup_profile'),
-  handleFormSubmit: (item) => {
-      userInfo.setUserInfo(item);
-  }
-});*/
+
+
 /*
 function submitFormHandler (evt) {
   evt.preventDefault();
@@ -86,12 +84,20 @@ function submitFormHandler (evt) {
 }*/
 
 // Слушатели на кнопки открытия попапов
-popupOpenButton.addEventListener ('click', () => openEditPopup());
+popupOpenButton.addEventListener ('click', () =>{
+  const { lastName, lastJob } = profileInfo.getUserInfo();
+    popupNameEdit.value = lastName;
+    popupJobEdit.value = lastJob;
+
+  editProfile.open();
+});
+//openEditPopup());
+
 //addButton.addEventListener ('click', () => openPopupAdd());
 
 // Слушатели на кнопки Сохранить в попапах
 //formEdit.addEventListener ('submit', submitFormHandler );
-formAdd.addEventListener ('submit', submitAddHandler );
+//formAdd.addEventListener ('submit', submitAddHandler );
 
 
 // Создание новой карточки

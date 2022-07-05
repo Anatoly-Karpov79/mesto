@@ -6,16 +6,19 @@ export default class UserInfo {
 
     };
     getUserInfo() {
-        const name = this._userName.textContent;
-        const job = this._userJob.textContent;
-      
-        return {name, job};
+        const lastName = this._userName.textContent;
+        const lastJob = this._userJob.textContent;
+     
+        return {lastName, lastJob};
         
     };
 
     // Добавляем данные пользователя на страницу
-    setUserInfo = ({ name, job }) => {
-        if(name) {this._name.textContent = name;};
-        if(job) {this._job.textContent = job;};
+    setUserInfo = ( {userName, userJob} ) => {
+        console.log({userName, userJob});
+         this._userName.textContent = userName;
+         this._userJob.textContent = userJob;
+        
     };
+    
 };
