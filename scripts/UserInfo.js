@@ -14,10 +14,10 @@ export default class UserInfo {
     };
 
     // Добавляем данные пользователя на страницу
-    setUserInfo = ( {userName, userJob} ) => {
-        console.log({userName, userJob});
-         this._userName.textContent = userName;
-         this._userJob.textContent = userJob;
+    setUserInfo = ( {name, job} ) => {
+        console.log({name, job});
+         this._userName.textContent = name;
+         this._userJob.textContent = job;
         
     };
     

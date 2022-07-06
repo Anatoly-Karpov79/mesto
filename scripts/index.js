@@ -51,16 +51,19 @@ const editProfile = new PopupWithForm({
   
   popupSelector: popupEdit,
   
-  submitFormHandler: (formData) => {
-    console.log('gjgjhgkjgh');
+  submitFormHandler: () => {
+ //   console.log('gjgjhgkjgh');
  //   evt.preventDefault();
- //   const inputList = editProfile.getInputValues()
- //   nameInput.textContent = inputList.name
- //   userData.textContent = inputList.about
-     profileInfo.setUserInfo({
-      userName: formData.userName,
-      userJob: formData.userJob
-    });
+    const inputList = editProfile.getInputValues()
+    nameInput.textContent = inputList.name
+    jobInput.textContent = inputList.job
+  
+ //     profileInfo.setUserInfo ({
+  //    name: formData.userName,
+  //    job: formData.userJob
+      
+  //  });
+ //   console.log(name)
     
     editProfile.close();
   }
