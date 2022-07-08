@@ -1,13 +1,12 @@
-
-
 // Импортируем данные из модулей
 
-import { Card } from './card.js';
-import { initialCards, config } from './data.js';
-import { FormValidator } from './formValidator.js'
-import Section from './Section.js';
-import PopupWithImage from './PopupWithImage.js';
-import { popupOpenButton,
+import { Card } from "./card.js";
+import { initialCards, config } from "./data.js";
+import { FormValidator } from "./formValidator.js";
+import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
+import {
+  popupOpenButton,
   addButton,
   popupNameEdit,
   popupJobEdit,
@@ -24,101 +23,86 @@ import { popupOpenButton,
   jobInput,
   popupImage,
   popupImageName,
-  popupAddSubmitBtn
-} from './data.js'
-import Popup from './Popup.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
+  popupAddSubmitBtn,
+} from "./data.js";
+import Popup from "./Popup.js";
+import PopupWithForm from "./PopupWithForm.js";
+import UserInfo from "./UserInfo.js";
+
 
 
 const profileInfo = new UserInfo({
-  name: '.profile__name',
-  job: '.profile__profession'
-})
+  name: ".profile__name",
+  job: ".profile__profession",
+});
 
-/*
-// Открытие попапа редактирование профиля
-function openEditPopup () {
-const editProfile = new PopupWithForm (popupEdit);
-const userData = profileInfo.getUserInfo();
-popupNameEdit.value = nameInput.textContent;
-popupJobEdit.value = userData.job;
 
-  editProfile.open();
-}*/ 
 
 const editProfile = new PopupWithForm({
-  
-  popupSelector: popupEdit,
-  
-  submitFormHandler: () => {
- //   console.log('gjgjhgkjgh');
- //   evt.preventDefault();
-    const inputList = editProfile.getInputValues()
-    nameInput.textContent = inputList.name
-    jobInput.textContent = inputList.job
-  
- //     profileInfo.setUserInfo ({
-  //    name: formData.userName,
-  //    job: formData.userJob
-      
-  //  });
- //   console.log(name)
+  popupSelector: '.popup_edit',
+
+  submitFormHandler: (data) => {
     
+    profileInfo.setUserInfo(data)
+
     editProfile.close();
-  }
+  },
 });
+
+
 editProfile.setEventListeners();
-/*
-//  openPopup(popupEdit);
- //   
- //   popupJobEdit.value = jobInput.textContent;
-}
-*/
-
-
-/*
-function submitFormHandler (evt) {
-  evt.preventDefault();
-  nameInput.textContent = popupNameEdit.value;
-  jobInput.textContent = popupJobEdit.value;
-
- // closePopup(popupEdit);
-}*/
 
 // Слушатели на кнопки открытия попапов
-popupOpenButton.addEventListener ('click', () =>{
+popupOpenButton.addEventListener("click", () => {
   const { lastName, lastJob } = profileInfo.getUserInfo();
-    popupNameEdit.value = lastName;
-    popupJobEdit.value = lastJob;
+  popupNameEdit.value = lastName;
+  popupJobEdit.value = lastJob;
 
   editProfile.open();
+}); 
+
+
+
+
+const addCardPopup = new PopupWithForm({
+  popupSelector: '.popup_add',
+
+  submitFormHandler: (data) => {
+
+    cardList.addItem(creatCard(data))
+//  console.log(data)
+
+   addCardPopup.close();
+  },
 });
-//openEditPopup());
 
-//addButton.addEventListener ('click', () => openPopupAdd());
 
-// Слушатели на кнопки Сохранить в попапах
-//formEdit.addEventListener ('submit', submitFormHandler );
-//formAdd.addEventListener ('submit', submitAddHandler );
+addButton.addEventListener ('click', () => {
+  addCardPopup.open()
+ 
+} );
+
+
+
+addCardPopup.setEventListeners();
 
 
 // Создание новой карточки
-const creatCard  = (item) => {
-    const card = new Card(item, '#element-card');
-      const cardElement = card.generateCard();
-      cardList.addItem(cardElement);
-  }
+const creatCard = (item) => {
+  const card = new Card({data: item}, "#element-card");
+  const cardElement = card.generateCard();
+  cardList.addItem(cardElement);
+};
 
-
-
-const cardList = new Section ( {
-  items: initialCards,
-  renderer: creatCard,
-}, elements);
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: creatCard,
+  },
+  elements
+);
 
 cardList.renderItems();
-
 
 /*
 const addNewCard = new Section ( {
@@ -140,18 +124,7 @@ const insertCard = (name, link) => {
 
 }
 */
-// Создаем и вставляем новую карточку из попапа Добавить
-function submitAddHandler (evt) {
-    evt.preventDefault();
-    const name = cardNameAdd.value;
-    const link = cardImageAdd.value;
-    const alt = cardNameAdd.value;
-    
-    creatCard(name, link)
-    insertCard (name, link);
-    closePopup(popupAdd);
-    formAdd.reset();
-}
+/*
 
 
 /*
@@ -160,13 +133,17 @@ initialCards.forEach(({name, link}) => {
      insertCard (name, link);
 }); */
 
+/*
+
 // Включаем валидацию для попапов
 const formEditValidate = new FormValidator(formEdit, config);
 formEditValidate.enableValidation();
 
 const formAddValidate = new FormValidator(formAdd, config);
 formAddValidate.enableValidation();
+*/
 /*
+
 // Открытие попапа добавить картинку
 const openPopupAdd = () => {
   openPopup(popupAdd);

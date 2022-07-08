@@ -4,9 +4,9 @@ import {popupImage, popupView, popupImageName} from './data.js';
 import PopupWithImage from './PopupWithImage.js';
 // Создаем класс
 export class Card {
-    constructor (item, popupSelector, handleCardClick) {
-      this._name = item.name;
-      this._link = item.link;
+    constructor ({data}, popupSelector, handleCardClick) {
+      this._name = data.name;
+      this._link = data.link;
       this._popupSelector = popupSelector;
       this._handleCardClick = handleCardClick;
  //     this.selector = '#element-card'
@@ -35,7 +35,7 @@ export class Card {
     
 handleCardClick = () => {
     const imagePopup = new PopupWithImage(popupView, this._name, this._link);
-       imagePopup.openPopup(this._name, this._link);
+       imagePopup.open(this._name, this._link);
        imagePopup.setEventListeners(popupView);
 };
 

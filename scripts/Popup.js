@@ -1,23 +1,29 @@
 //import {popupCloseBtn} from './data.js'
 export default class Popup {
     constructor (popupSelector) {
+      
         this._popupSelector = popupSelector;
-        this._popupCloseBtn = this._popupSelector.querySelector('.popup__close-popup');
+       
+        this._popup = document.querySelector(this._popupSelector);
+       
+    
+        this._popupCloseBtn = this._popup.querySelector('.popup__close-popup');
+
     }
 
     open() {
-        this._popupSelector.classList.add('popup_opened');
+        this._popup.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);
     };
 
     close() {
-        this._popupSelector.classList.remove('popup_opened');
+        this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose);
     };
 
     _handleEscClose = (event) => {
         if (event.key === 'Escape') {
-          this.closePopup();
+          this.close();
             };
     }
 
