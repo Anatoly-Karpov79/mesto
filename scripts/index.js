@@ -12,43 +12,24 @@ import {
   popupJobEdit,
   formEdit,
   formAdd,
-  popupEdit,
-  popupAdd,
   popupView,
-  popups,
-  nameInput,
-  cardNameAdd,
-  cardImageAdd,
-  elements,
-  jobInput,
-  popupImage,
-  popupImageName,
-  popupAddSubmitBtn,
 } from "./data.js";
-import Popup from "./Popup.js";
 import PopupWithForm from "./PopupWithForm.js";
 import UserInfo from "./UserInfo.js";
-
-
 
 const profileInfo = new UserInfo({
   name: ".profile__name",
   job: ".profile__profession",
 });
 
-
-
 const editProfile = new PopupWithForm({
-  popupSelector: '.popup_edit',
+  popupSelector: ".popup_edit",
 
   submitFormHandler: (data) => {
-    
-    profileInfo.setUserInfo(data)
-
+    profileInfo.setUserInfo(data);
     editProfile.close();
   },
 });
-
 
 editProfile.setEventListeners();
 
@@ -59,81 +40,54 @@ popupOpenButton.addEventListener("click", () => {
   popupJobEdit.value = lastJob;
 
   editProfile.open();
-}); 
-
-
-
+});
 
 const addCardPopup = new PopupWithForm({
-  popupSelector: '.popup_add',
+  popupSelector: ".popup_add",
 
   submitFormHandler: (data) => {
+    cardList.addItem(creatCard(data));
 
-    cardList.addItem(creatCard(data))
-//  console.log(data)
-
-   addCardPopup.close();
+    addCardPopup.close();
   },
 });
 
-
-addButton.addEventListener ('click', () => {
-  addCardPopup.open()
- 
-} );
-
-
+addButton.addEventListener("click", () => {
+  addCardPopup.open();
+  formAddValidate.disableAddSubmitBtn();
+});
 
 addCardPopup.setEventListeners();
 
+const imagePopup = new PopupWithImage(".popup_view");
+
+imagePopup.setEventListeners(popupView);
 
 // Создание новой карточки
 const creatCard = (item) => {
-  const card = new Card({data: item}, "#element-card");
-  const cardElement = card.generateCard();
-  cardList.addItem(cardElement);
+  const card = new Card(
+    {
+      data: item,
+      handleCardClick: () => {
+        imagePopup.open(item);
+      },
+    },
+    "#element-card"
+  );
+  return card.generateCard();
 };
 
 const cardList = new Section(
   {
     items: initialCards,
-    renderer: creatCard,
+    renderer: (item) => {
+      cardList.addItem(creatCard(item));
+    },
   },
-  elements
+  ".elements"
 );
 
 cardList.renderItems();
-
-/*
-const addNewCard = new Section ( {
-  items: newPopupCard,
-  renderer: (item) => {
-    const card = new Card(item, '#element-card');
-
-    const cardElement = card.generateCard();
-
-    cardList.addItem(cardElement);
-  }
-}, elements);
-*/
-
-/*
-// Вставляем карточку
-const insertCard = (name, link) => {
-   elements.prepend(creatCard(name, link));
-
-}
-*/
-/*
-
-
-/*
-// Создаем карточки из массива и вставляем в DOM
-initialCards.forEach(({name, link}) => {
-     insertCard (name, link);
-}); */
-
-/*
 
 // Включаем валидацию для попапов
 const formEditValidate = new FormValidator(formEdit, config);
@@ -141,12 +95,3 @@ formEditValidate.enableValidation();
 
 const formAddValidate = new FormValidator(formAdd, config);
 formAddValidate.enableValidation();
-*/
-/*
-
-// Открытие попапа добавить картинку
-const openPopupAdd = () => {
-  openPopup(popupAdd);
-  formAddValidate.disableAddSubmitBtn();
-}
-*/

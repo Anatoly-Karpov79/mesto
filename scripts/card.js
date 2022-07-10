@@ -4,12 +4,12 @@ import {popupImage, popupView, popupImageName} from './data.js';
 import PopupWithImage from './PopupWithImage.js';
 // Создаем класс
 export class Card {
-    constructor ({data}, popupSelector, handleCardClick) {
+    constructor ({data, handleCardClick}, popupSelector) {
       this._name = data.name;
       this._link = data.link;
       this._popupSelector = popupSelector;
       this._handleCardClick = handleCardClick;
- //     this.selector = '#element-card'
+ 
     }
 // Находим шаблон для карточек    
     _getTemplate() {
@@ -18,7 +18,7 @@ export class Card {
           .content
           .querySelector('.card')
           .cloneNode(true);
-    
+    console.log(cardElement)
         return cardElement;
     }
 
@@ -27,22 +27,20 @@ export class Card {
         this._cardElement = this._getTemplate();
         this._setEventListeners();    
         this._cardElement.querySelector('.card__image').src = this._link;
+        this._cardElement.querySelector('.card__image').alt = this._name;
         this._cardElement.querySelector('.card__name').textContent = this._name;
-     
+
+  //   console.log(this._name)
+  //   console.log(this._link)
         return this._cardElement;
     }   
-// Открытие попапа просмотра картинки
-    
-handleCardClick = () => {
-    const imagePopup = new PopupWithImage(popupView, this._name, this._link);
-       imagePopup.open(this._name, this._link);
-       imagePopup.setEventListeners(popupView);
-};
+
+
 
 // Устанавливаем слушатели
     _setEventListeners() {
         this._cardElement.querySelector('.card__image').addEventListener('click', () => {
-           this.handleCardClick(this._name, this._link);
+           this._handleCardClick();
         });
         this._cardElement.querySelector('.card__heart').addEventListener('click', () => {
         this._handleHeartActiv ();

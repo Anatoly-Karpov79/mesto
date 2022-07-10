@@ -33,7 +33,7 @@ export default class Popup {
            this.close();
         });
         document.addEventListener('mousedown', (evt) => {
-            if (evt.target === this._popupSelector)
+            if (evt.target === this._popup)
             this.close();
         });
     }
