@@ -3,5 +3,5 @@
     height: 120px;
     border-radius: 50%;
     background-image: url(../../../images/kusto.jpg);
-    object-fit: scale-down;
+    background-size: contain;
 }
