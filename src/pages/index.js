@@ -2,11 +2,11 @@
 import './index.css';
 
 
-import { Card } from "../scripts/card.js";
-import { initialCards, config } from "../scripts/data.js";
-import { FormValidator } from "../scripts/formValidator.js";
-import Section from "../scripts/Section.js";
-import PopupWithImage from "../scripts/PopupWithImage.js";
+import { Card } from "../components/Card.js";
+import { initialCards, config } from "../utils/data.js";
+import { FormValidator } from "../components/FormValidator.js";
+import Section from "../components/Section.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import {
   popupOpenButton,
   addButton,
@@ -15,9 +15,9 @@ import {
   formEdit,
   formAdd,
   popupView,
-} from "../scripts/data.js";
-import PopupWithForm from "../scripts/PopupWithForm.js";
-import UserInfo from "../scripts/UserInfo.js";
+} from "../utils/data.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import UserInfo from "../components/UserInfo.js";
 
 const profileInfo = new UserInfo({
   name: ".profile__name",

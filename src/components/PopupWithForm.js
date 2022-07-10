@@ -23,7 +23,7 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
   }
 
-  open = () => {
+  open () {
     super.open();
     
   };
