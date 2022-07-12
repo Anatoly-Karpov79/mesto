@@ -18,6 +18,7 @@ import {
 } from "../utils/data.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Popup from "../components/Popup.js";
 
 const profileInfo = new UserInfo({
   name: ".profile__name",
@@ -34,6 +35,12 @@ const editProfile = new PopupWithForm({
 });
 
 editProfile.setEventListeners();
+
+// Попап подтверждения удаления
+const confirmDelete = new Popup ('.popup_confirm')
+ 
+confirmDelete.setEventListeners();
+
 
 // Слушатели на кнопки открытия попапов
 popupOpenButton.addEventListener("click", () => {
@@ -72,6 +79,9 @@ const creatCard = (item) => {
       data: item,
       handleCardClick: () => {
         imagePopup.open(item);
+      },
+      hendleDelete: () => {
+        confirmDelete.open();
       },
     },
     "#element-card"

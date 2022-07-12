@@ -1,10 +1,11 @@
 // Создаем класс
 export class Card {
-  constructor({ data, handleCardClick }, cardSelector) {
+  constructor({ data, handleCardClick, hendleDelete }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
+    this._hendleDelete = hendleDelete;
    
   }
   // Находим шаблон для карточек
@@ -44,7 +45,7 @@ export class Card {
     this._cardElement
       .querySelector(".card__delete")
       .addEventListener("click", () => {
-        this._handleDelete();
+        this._hendleDelete();
       });
   }
 
@@ -53,8 +54,8 @@ export class Card {
     this._likeButton.classList.toggle("card__heart_activ");
   }
   // нажатие на корзину
-  _handleDelete() {
-    this._cardElement.remove();
-    this._cardElement = null;
-  }
+//  _handleDelete() {
+//    this._cardElement.remove();
+ //   this._cardElement = null;
+//  }
 }
