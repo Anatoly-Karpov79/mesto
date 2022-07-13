@@ -46,6 +46,7 @@ export class Card {
       .querySelector(".card__delete")
       .addEventListener("click", () => {
         this._hendleDelete();
+        return this._cardElement
       });
   }
 

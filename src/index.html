@@ -15,6 +15,7 @@
     <section class="profile">
       <div 
         class="profile__avatar-image">
+        <img class="profile__avatar-image2" src="#" alt="#" />
       </div>
         
       <div class="profile__info">
@@ -149,13 +150,54 @@
           class="popup__close-popup popup__confirm-close popup__button-close"
         ></button>
         <h3 class="popup__heading">Вы уверены?</h3>
-        
+        <form
+          name="form__confirm"
+          class="form popup__form"
+          id="form__confirm"
+          novalidate
+        >
             <button type="submit" class="popup__button" id="popup__button-confirm">
               Да
             </button>
-          
+        </form>  
       </div>
     </div>
+
+ <!--Попап оновить аватар -->
+ <div class="popup popup_avatar">
+  <div class="popup__container">
+    <button
+      aria-label="Close"
+      type="button"
+      class="popup__close-popup popup__avatar-close popup__button-close"
+    ></button>
+    <h3 class="popup__heading">Обновить аватар</h3>
+    <form
+      name="form__avatar"
+      class="form popup__form"
+      id="form__avatar"
+      novalidate
+    >
+      <fieldset class="form__set">
+        <input
+          type="url"
+          class="popup__input popup__input_avatar_link"
+          id="url-input"
+          placeholder="Ссылка на картинку"
+          name="link"
+          required
+        />
+        <span
+          class="form__input-error popup__input-error url-input-error"
+        ></span>
+        <button type="submit" class="popup__button" id="popup__button-avatar">
+          Сохранить
+        </button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+
 
     <div class="popup popup_view">
       <div class="popup__view-container">
