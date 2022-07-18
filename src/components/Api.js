@@ -12,11 +12,13 @@ export default class Api {
           .then(res => {
             if (res.ok) {
               return res.json();
+              
             }
-      
+          
             // если ошибка, отклоняем промис
             return Promise.reject(`Ошибка: ${res.status}`);
           });
+          
       } 
       getProfile() {
          return fetch(`https://mesto.nomoreparties.co/v1/cohort-45/users/me`, {

@@ -135,7 +135,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
     })
 
 
-const cardList = new Section(
+/*const cardList = new Section(
   {
     
     renderer:(item, userId) => {
@@ -148,7 +148,7 @@ const cardList = new Section(
   ".elements"
 );
 
-cardList.renderItems();  
+cardList.renderItems();  */
 
 // Включаем валидацию для попапов
 const formEditValidate = new FormValidator(formEdit, config);
