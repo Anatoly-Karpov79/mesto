@@ -1,7 +1,7 @@
 // Импортируем данные из модулей
 import './index.css';
 
-
+import Api from '../components/Api';
 import { Card } from "../components/Card.js";
 import { initialCards, config } from "../utils/data.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -20,7 +20,15 @@ import {
 } from "../utils/data.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
-import Popup from "../components/Popup.js";
+
+const api = new Api({
+  
+  headers: {
+      authorization: 'c04a1622-0598-4071-90e7-6743c1c11c46',
+      'Content-Type': 'application/json',
+  }
+});
+
 
 avatarImage.addEventListener("click", () => {
   
@@ -117,17 +125,30 @@ const creatCard = (item) => {
   return card.generateCard();
 };
 
+Promise.all([api.getProfile(), api.getInitialCards()])
+    .then(([user, cards]) => {
+        cardList.renderItems(cards, user._id);
+        UserInfo.setUserInfo(user);
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+
+
 const cardList = new Section(
   {
-    items: initialCards,
-    renderer: (item) => {
-      cardList.addItem(creatCard(item));
+    
+    renderer:(item, userId) => {
+      cardList.addItem(creatCard((item, userId)));
+     
+     
+      
     },
   },
   ".elements"
 );
 
-cardList.renderItems();
+cardList.renderItems();  
 
 // Включаем валидацию для попапов
 const formEditValidate = new FormValidator(formEdit, config);
