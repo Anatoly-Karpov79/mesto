@@ -22,8 +22,7 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
 const api = new Api({
-  
-  headers: {
+    headers: {
       authorization: 'c04a1622-0598-4071-90e7-6743c1c11c46',
       'Content-Type': 'application/json',
   }
@@ -125,21 +124,22 @@ const creatCard = (item) => {
   return card.generateCard();
 };
 
-Promise.all([api.getProfile(), api.getInitialCards()])
-    .then(([user, cards]) => {
-        cardList.renderItems(cards, user._id);
-        UserInfo.setUserInfo(user);
+Promise.all([api.getInitialCards()])
+    .then(([cards]) => {
+    //  console.log(cards)
+        cardList.renderItems(cards);
+      //  UserInfo.setUserInfo(user);
     })
     .catch((err) => {
         console.log(err);
     })
 
 
-/*const cardList = new Section(
+const cardList = new Section(
   {
     
-    renderer:(item, userId) => {
-      cardList.addItem(creatCard((item, userId)));
+    renderer:(item) => {
+      cardList.addItem(creatCard((item)));
      
      
       
@@ -148,7 +148,7 @@ Promise.all([api.getProfile(), api.getInitialCards()])
   ".elements"
 );
 
-cardList.renderItems();  */
+//cardList.renderItems();  
 
 // Включаем валидацию для попапов
 const formEditValidate = new FormValidator(formEdit, config);
