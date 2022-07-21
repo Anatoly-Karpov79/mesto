@@ -32,6 +32,16 @@ export default class Api {
     })
     .then(this._handleResponse)
   }
-
+  addCard(name, link) {
+    fetch(this.baseUrl + "/cards", {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({
+        name: `${name}`,
+        link: `${link}`,
+      }),
+    })
+    .then(this._handleResponse);
+  }
   // другие методы работы с API
 }

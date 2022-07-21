@@ -53,13 +53,13 @@ const editProfile = new PopupWithForm({
   submitFormHandler: (data) => {
     profileInfo.setUserInfo(data);
     api.changeProfile(data.name, data.about)
-      .then(() => {
+ //     .then(() => {
         editProfile.close()
-      })
+ //     })
 
-      .catch((err) => {
-        console.log(err);
-      });
+ ///     .catch((err) => {
+ //       console.log(err);
+ //     });
   },
 });
 
@@ -94,6 +94,7 @@ const addCardPopup = new PopupWithForm({
   popupSelector: ".popup_add",
 
   submitFormHandler: (data) => {
+    api.addCard(data.name, data.link);
     cardList.addItem(creatCard(data));
 
     addCardPopup.close();
@@ -131,9 +132,7 @@ const creatCard = (item) => {
 
 Promise.all([api.getInitialCards(), api.getProfile()])
   .then(([cards, user]) => {
-    //  console.log(cards)
     cardList.renderItems(cards);
-    //   console.log([user]);
     profileInfo.setUserInfo(user);
   })
   .catch((err) => {
