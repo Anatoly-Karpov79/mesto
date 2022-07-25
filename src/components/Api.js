@@ -1,7 +1,7 @@
 export default class Api {
   constructor({ headers, baseUrl }) {
-    (this.headers = headers),
-      (this.baseUrl = baseUrl),
+    (this._headers = headers),
+      (this._baseUrl = baseUrl),
       (this._handleResponse = (res) => {
         if (res.ok) {
           return res.json();
@@ -11,14 +11,14 @@ export default class Api {
       });
   }
   getProfile() {
-    return fetch(this.baseUrl + "/users/me", {
-      headers: this.headers,
+    return fetch(this._baseUrl + `/users/me`, {
+      headers: this._headers,
     }).then(this._handleResponse);
   }
 
   getInitialCards() {
-    return fetch(this.baseUrl + "/cards", {
-      headers: this.headers,
+    return fetch(this._baseUrl + "/cards", {
+      headers: this._headers,
     }).then(this._handleResponse);
   }
   changeProfile(name, about) {
@@ -29,19 +29,31 @@ export default class Api {
         name: `${name}`,
         about: `${about}`,
       }),
+    }).then(this._handleResponse);
+  }
+  addCard(data) {
+   return fetch(this._baseUrl + "/cards", {
+      method: "POST",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link,
+      }),
+    }).then(this._handleResponse);
+  }
+  setLike(_id) {
+    return fetch(this._baseUrl + "/cards/" + _id + "/likes", {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._handleResponse);
+  }
+   // Удалить лайк
+   removeLike(_id) {
+    return fetch(this.baseUrl + `/cards/` + _id + `/likes/`, {
+      method: 'DELETE',
+      headers: this.headers,
     })
     .then(this._handleResponse)
-  }
-  addCard(name, link) {
-    fetch(this.baseUrl + "/cards", {
-      method: "POST",
-      headers: this.headers,
-      body: JSON.stringify({
-        name: `${name}`,
-        link: `${link}`,
-      }),
-    })
-    .then(this._handleResponse);
   }
   // другие методы работы с API
 }

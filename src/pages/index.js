@@ -89,7 +89,7 @@ popupOpenButton.addEventListener("click", () => {
 
   editProfile.open();
 });
-
+/*
 const addCardPopup = new PopupWithForm({
   popupSelector: ".popup_add",
 
@@ -99,6 +99,24 @@ const addCardPopup = new PopupWithForm({
 
     addCardPopup.close();
   },
+});*/
+
+const addCardPopup = new PopupWithForm({
+  popupSelector: '.popup_add',
+  submitFormHandler: (data) => {
+    addCardPopup.loadingState(true);
+    api.addCard(data)
+      .then((data) => {
+        cardList.addItem(creatCard(data));
+        addCardPopup.close();
+      })
+      .catch((err) => {
+        console.log(`Ошибка ${err}`);
+      })
+   //   .finally(() => {
+   //     newPlacePopup.loadingState(false);
+   //   });
+  }
 });
 
 addButton.addEventListener("click", () => {
@@ -123,6 +141,25 @@ const creatCard = (item) => {
       hendleDelete: () => {
         confirmDelete.open();
       },
+     
+      handleCardLikeSetting: (cardId) => {
+        api.setLike(cardId)
+          .then((data) => {
+          card.updateLikes(data);
+          })
+          .catch((err) => {
+            console.log(`Ошибка ${err}`);
+          });
+      },
+      handleCardLikeRemoving: (cardId) => {
+        api.removeLike(cardId)
+          .then((data) => {
+            card.updateLikes(data);
+          })
+          .catch((err) => {
+            console.log(`Ошибка ${err}`);
+          });
+      }
     },
     "#element-card"
   );
@@ -147,7 +184,19 @@ const cardList = new Section(
   },
   ".elements"
 );
-
+function statusLike(id, status) {
+  if (status === 'true') {
+      api.setLike(id)
+          .catch((err) => {
+              console.log(err);
+          })
+  } else {
+      api.removeLike(id)
+          .catch((err) => {
+              console.log(err);
+          })
+  };
+};
 
 // Включаем валидацию для попапов
 const formEditValidate = new FormValidator(formEdit, config);

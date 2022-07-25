@@ -8,7 +8,7 @@ export default class Section {
 
     renderItems (items, userId) {
         this._renderedItems = items;
-        console.log(items);
+      //  console.log(items);
         items.forEach(item => {
             this._renderer(item, userId);
             
