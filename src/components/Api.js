@@ -22,9 +22,9 @@ export default class Api {
     }).then(this._handleResponse);
   }
   changeProfile(name, about) {
-    fetch(this.baseUrl + "/users/me", {
+    fetch(this._baseUrl + `/users/me`, {
       method: "PATCH",
-      headers: this.headers,
+      headers: this._headers,
       body: JSON.stringify({
         name: `${name}`,
         about: `${about}`,
@@ -54,6 +54,15 @@ export default class Api {
       headers: this.headers,
     })
     .then(this._handleResponse)
+  }
+
+  changeAvatar(link) {
+     fetch(this._baseUrl + `/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify( link )
+    })
+      .then(this._handleResponse);
   }
   // другие методы работы с API
 }

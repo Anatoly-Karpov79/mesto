@@ -36,7 +36,8 @@ const editAvatar = new PopupWithForm({
   popupSelector: ".popup_avatar",
 
   submitFormHandler: () => {
-    //  profileInfo.setUserInfo(data);
+      profileInfo.setUserInfo(avatar);
+      api.changeAvatar(link)
     editAvatar.close();
   },
 });
@@ -45,6 +46,7 @@ editAvatar.setEventListeners();
 const profileInfo = new UserInfo({
   name: ".profile__name",
   about: ".profile__profession",
+  avatar: ".profile__avatar-image",
 });
 
 const editProfile = new PopupWithForm({
@@ -107,7 +109,8 @@ const addCardPopup = new PopupWithForm({
     addCardPopup.loadingState(true);
     api.addCard(data)
       .then((data) => {
-        cardList.addItem(creatCard(data));
+        cardList.addItem(creatCard(data, data.owner._id));
+        
         addCardPopup.close();
       })
       .catch((err) => {
@@ -131,10 +134,12 @@ const imagePopup = new PopupWithImage(".popup_view");
 imagePopup.setEventListeners(popupView);
 
 // Создание новой карточки
-const creatCard = (item) => {
+const creatCard = (item, userId) => {
   const card = new Card(
     {
       data: item,
+    //  userId: currentUserId,
+    
       handleCardClick: () => {
         imagePopup.open(item);
       },
@@ -162,14 +167,15 @@ const creatCard = (item) => {
       }
     },
     "#element-card"
-  );
+  ); 
   return card.generateCard();
 };
-
+let currentUserId = null;
 
 Promise.all([api.getInitialCards(), api.getProfile()])
   .then(([cards, user]) => {
-    cardList.renderItems(cards);
+   // currentUserId = user._id;
+    cardList.renderItems(cards, user._id);
     profileInfo.setUserInfo(user);
   })
   .catch((err) => {
@@ -178,8 +184,8 @@ Promise.all([api.getInitialCards(), api.getProfile()])
 
 const cardList = new Section(
   {
-    renderer: (item) => {
-      cardList.addItem(creatCard(item));
+    renderer: (item, userId) => {
+      cardList.addItem(creatCard(item, userId));
     },
   },
   ".elements"
