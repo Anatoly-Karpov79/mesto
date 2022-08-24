@@ -3,7 +3,7 @@ export default class UserInfo {
     this._name = document.querySelector(name);
     this._about = document.querySelector(about);
     this._avatar = document.querySelector(avatar);
-    console.log(avatar);
+   
   }
   getUserInfo() {
     const profile = {

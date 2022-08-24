@@ -22,7 +22,7 @@ export default class Api {
     }).then(this._handleResponse);
   }
   changeProfile(name, about) {
-    fetch(this._baseUrl + `/users/me`, {
+   return fetch(this._baseUrl + `/users/me`, {
       method: "PATCH",
       headers: this._headers,
       body: JSON.stringify({
@@ -49,18 +49,18 @@ export default class Api {
   }
    // Удалить лайк
    removeLike(_id) {
-    return fetch(this.baseUrl + `/cards/` + _id + `/likes/`, {
+    return fetch(this._baseUrl + `/cards/` + _id + `/likes/`, {
       method: 'DELETE',
-      headers: this.headers,
+      headers: this._headers,
     })
     .then(this._handleResponse)
   }
 
-  changeAvatar(link) {
-     fetch(this._baseUrl + `/users/me/avatar`, {
+  changeAvatar(data) {
+    return  fetch(this._baseUrl + `/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
-      body: JSON.stringify( link )
+      body: JSON.stringify( {avatar: data.link} )
     })
       .then(this._handleResponse);
   }

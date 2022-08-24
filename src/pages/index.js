@@ -3,7 +3,7 @@ import "./index.css";
 
 import Api from "../components/Api";
 import { Card } from "../components/Card.js";
-import { initialCards, config } from "../utils/data.js";
+import { config } from "../utils/data.js";
 import { FormValidator } from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -35,10 +35,18 @@ avatarImage.addEventListener("click", () => {
 const editAvatar = new PopupWithForm({
   popupSelector: ".popup_avatar",
 
-  submitFormHandler: () => {
-      profileInfo.setUserInfo(avatar);
-      api.changeAvatar(link)
-    editAvatar.close();
+  submitFormHandler: (data) => {
+    editAvatar.isSaving(true);
+      api.changeAvatar(data)
+        .then(res => {
+        profileInfo.setUserInfo(res);
+         editAvatar.close()
+      })
+   
+    .catch((err) => console.log(err))
+    .finally(() => {
+      editAvatar.isSaving(false);
+    });
   },
 });
 editAvatar.setEventListeners();
@@ -53,15 +61,18 @@ const editProfile = new PopupWithForm({
   popupSelector: ".popup_edit",
 
   submitFormHandler: (data) => {
-    profileInfo.setUserInfo(data);
-    api.changeProfile(data.name, data.about)
- //     .then(() => {
-        editProfile.close()
- //     })
+    editProfile.isSaving(true);
+      api.changeProfile(data.name, data.about)
 
- ///     .catch((err) => {
- //       console.log(err);
- //     });
+      .then(res => {
+  profileInfo.setUserInfo(res);
+        editProfile.close()
+      })
+      .catch((err) => console.log(err))
+      .finally(() => {
+        editProfile.isSaving(false);
+      });
+ 
   },
 });
 
@@ -91,34 +102,23 @@ popupOpenButton.addEventListener("click", () => {
 
   editProfile.open();
 });
-/*
-const addCardPopup = new PopupWithForm({
-  popupSelector: ".popup_add",
-
-  submitFormHandler: (data) => {
-    api.addCard(data.name, data.link);
-    cardList.addItem(creatCard(data));
-
-    addCardPopup.close();
-  },
-});*/
 
 const addCardPopup = new PopupWithForm({
   popupSelector: '.popup_add',
   submitFormHandler: (data) => {
-    addCardPopup.loadingState(true);
+    addCardPopup.isSaving(true);
     api.addCard(data)
       .then((data) => {
-        cardList.addItem(creatCard(data, data.owner._id));
+        cardList.addNewItem(creatCard(data, data.owner._id));
         
         addCardPopup.close();
       })
       .catch((err) => {
         console.log(`Ошибка ${err}`);
       })
-   //   .finally(() => {
-   //     newPlacePopup.loadingState(false);
-   //   });
+      .finally(() => {
+        addCardPopup.isSaving(false);
+      });
   }
 });
 
