@@ -11,7 +11,7 @@ export default class Section {
         this._renderedItems = items;
         items.forEach(item => {
             this._renderer(item, userId);
-  //          console.log(userId) 
+           
           });
     }
 
@@ -20,6 +20,7 @@ export default class Section {
     };
     addNewItem (element) {
         this._container.prepend(element);
+     
     };
 
 }

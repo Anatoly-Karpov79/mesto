@@ -1,6 +1,6 @@
 // Создаем класс
 export class Card {
-  constructor({ data, handleCardClick, hendleDelete, userId, handleCardLikeSetting, handleCardLikeRemoving }, cardSelector) {
+  constructor({ data, handleCardClick, hendleDelete, currentUserId, handleCardLikeSetting, handleCardLikeRemoving }, cardSelector) {
     this._name = data.name;
     this._link = data.link;
     this._cardSelector = cardSelector;
@@ -10,10 +10,9 @@ export class Card {
     this._handleCardLikeRemove = handleCardLikeRemoving;
     this._likes = data.likes;
     this._cardId = data._id;
-
     this._ownerId = data.owner._id;
-    this._currentUserId = userId;
-//    console.log(this._currentUserId)
+    this._currentUserId = currentUserId;
+   
   }
   // Находим шаблон для карточек
   _getTemplate() {

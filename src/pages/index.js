@@ -110,7 +110,7 @@ const addCardPopup = new PopupWithForm({
     api.addCard(data)
       .then((data) => {
         cardList.addNewItem(creatCard(data, data.owner._id));
-        
+ //       console.log(data)
         addCardPopup.close();
       })
       .catch((err) => {
@@ -138,7 +138,7 @@ const creatCard = (item, userId) => {
   const card = new Card(
     {
       data: item,
-    //  userId: currentUserId,
+      currentUserId: userId,
     
       handleCardClick: () => {
         imagePopup.open(item);
@@ -174,9 +174,9 @@ let currentUserId = null;
 
 Promise.all([api.getInitialCards(), api.getProfile()])
   .then(([cards, user]) => {
-   // currentUserId = user._id;
+    currentUserId = user._id;
     cardList.renderItems(cards, user._id);
-    profileInfo.setUserInfo(user);
+   // profileInfo.setUserInfo(user);
   })
   .catch((err) => {
     console.log(err);
