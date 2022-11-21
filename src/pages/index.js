@@ -22,9 +22,9 @@ import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 
 const api = new Api({
-  baseUrl: `https://mesto.nomoreparties.co/v1/cohort-45`,
+  baseUrl: `https://mesto.nomoreparties.co/v1/cohort-54`,
   headers: {
-    authorization: "c04a1622-0598-4071-90e7-6743c1c11c46",
+    authorization: "234760c4-c169-4c5e-95d9-4ebca7efc3f0",
     "Content-Type": "application/json",
   },
 });
