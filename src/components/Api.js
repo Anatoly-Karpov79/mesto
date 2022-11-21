@@ -10,9 +10,10 @@ export default class Api {
         return Promise.reject(`Ошибка: ${res.status}`);
       });
   }
-  getProfile() {
-    return fetch(this._baseUrl + `/users/me`, {
-      headers: this._headers,
+  getUserInfo() {
+    return fetch(`https://mesto.nomoreparties.co/v1/cohort-54/users/me`, { 
+      method: "GET",
+    headers: this._headers,
     }).then(this._handleResponse);
   }
 
@@ -31,6 +32,7 @@ export default class Api {
       }),
     }).then(this._handleResponse);
   }
+
   addCard(data) {
    return fetch(this._baseUrl + "/cards", {
       method: "POST",
@@ -41,6 +43,7 @@ export default class Api {
       }),
     }).then(this._handleResponse);
   }
+
   setLike(_id) {
     return fetch(this._baseUrl + "/cards/" + _id + "/likes", {
       method: "PUT",

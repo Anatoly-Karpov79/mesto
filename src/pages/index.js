@@ -170,13 +170,13 @@ const creatCard = (item, userId) => {
   ); 
   return card.generateCard();
 };
-let currentUserId = null;
+let userId;
 
-Promise.all([api.getInitialCards(), api.getProfile()])
+Promise.all([api.getInitialCards(), api.getUserInfo()])
   .then(([cards, user]) => {
-    currentUserId = user._id;
+    userId = user._id;
     cardList.renderItems(cards, user._id);
-   // profileInfo.setUserInfo(user);
+    profileInfo.setUserInfo(user);
   })
   .catch((err) => {
     console.log(err);
