@@ -110,6 +110,15 @@ export class Card {
       this._handleCardLikeRemove(this._cardId);
     }
   }
+
+  getId() {
+    return this._cardId;
+}
+
+deleteCard() {
+  this._cardElement.remove();
+  this._cardElement = null;
+}
   // нажатие на корзину
 //  _handleDelete() {
 //    this._cardElement.remove();

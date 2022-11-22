@@ -34,7 +34,7 @@ export default class Api {
   }
 
   addCard(data) {
-   return fetch(this._baseUrl + "/cards", {
+   return fetch(this._baseUrl + `/cards`, {
       method: "POST",
       headers: this._headers,
       body: JSON.stringify({
@@ -45,7 +45,7 @@ export default class Api {
   }
 
   setLike(_id) {
-    return fetch(this._baseUrl + "/cards/" + _id + "/likes", {
+    return fetch(this._baseUrl + `/cards/` + _id + `/likes`, {
       method: "PUT",
       headers: this._headers,
     }).then(this._handleResponse);
@@ -67,5 +67,14 @@ export default class Api {
     })
       .then(this._handleResponse);
   }
+
+  deleteCard(_cardId) {
+    return fetch(this._baseUrl + `/cards/` + _cardId, {
+        method: "DELETE",
+        headers: this._headers,
+    }).then(this._checkResponse);
+  
+  }
+
   // другие методы работы с API
 }

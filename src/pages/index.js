@@ -20,6 +20,7 @@ import {
 } from "../utils/data.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import PopupWithConfirm from "../components/PopupWihtConfirm";
 
 const api = new Api({
   baseUrl: `https://mesto.nomoreparties.co/v1/cohort-54`,
@@ -83,14 +84,14 @@ editProfile.setEventListeners();
 
 //confirmDelete.setEventListeners();
 
-const confirmDelete = new PopupWithForm({
+const confirmDelete = new PopupWithConfirm({
   popupSelector: ".popup_confirm",
 
-  submitFormHandler: () => {
-    console.log(this._cardElement);
+ // submitFormHandler: () => {
+//    console.log(this._cardElement);
     // profileInfo.setUserInfo(data);
-    confirmDelete.close();
-  },
+ //   confirmDelete.close();
+//  },
 });
 confirmDelete.setEventListeners();
 
@@ -110,7 +111,7 @@ const addCardPopup = new PopupWithForm({
     api.addCard(data)
       .then((data) => {
         cardList.addNewItem(creatCard(data, data.owner._id));
- //       console.log(data)
+  //      console.log(data.owner._id)
         addCardPopup.close();
       })
       .catch((err) => {
@@ -143,8 +144,21 @@ const creatCard = (item, userId) => {
       handleCardClick: () => {
         imagePopup.open(item);
       },
+
       hendleDelete: () => {
         confirmDelete.open();
+        confirmDelete.handleDeleteCard(() => {
+          api.deleteCard(card.getId())
+             .then(() => {
+              card.deleteCard();
+              confirmDelete.close();
+          })
+          .catch((err) => {
+              console.log(err);
+          });
+  
+        }
+        )
       },
      
       handleCardLikeSetting: (cardId) => {
