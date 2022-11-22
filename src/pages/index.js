@@ -32,12 +32,13 @@ const api = new Api({
 
 avatarImage.addEventListener("click", () => {
   editAvatar.open();
+  formAvatarValidate.disableAddSubmitBtn();
 });
 const editAvatar = new PopupWithForm({
   popupSelector: ".popup_avatar",
 
   submitFormHandler: (data) => {
-    editAvatar.isSaving(true);
+    editAvatar.renderLoading(true);
       api.changeAvatar(data)
         .then(res => {
         profileInfo.setUserInfo(res);
@@ -46,7 +47,7 @@ const editAvatar = new PopupWithForm({
    
     .catch((err) => console.log(err))
     .finally(() => {
-      editAvatar.isSaving(false);
+      editAvatar.renderLoading(false);
     });
   },
 });
@@ -62,7 +63,7 @@ const editProfile = new PopupWithForm({
   popupSelector: ".popup_edit",
 
   submitFormHandler: (data) => {
-    editProfile.isSaving(true);
+    editProfile.renderLoading(true);
       api.changeProfile(data.name, data.about)
 
       .then(res => {
@@ -71,7 +72,7 @@ const editProfile = new PopupWithForm({
       })
       .catch((err) => console.log(err))
       .finally(() => {
-        editProfile.isSaving(false);
+        editProfile.renderLoading(false);
       });
  
   },
@@ -95,7 +96,7 @@ popupOpenButton.addEventListener("click", () => {
 const addCardPopup = new PopupWithForm({
   popupSelector: '.popup_add',
   submitFormHandler: (data) => {
-    addCardPopup.isSaving(true);
+    addCardPopup.renderLoading(true);
     api.addCard(data)
       .then((data) => {
         cardList.addNewItem(creatCard(data, data.owner._id));
@@ -105,7 +106,7 @@ const addCardPopup = new PopupWithForm({
         console.log(`Ошибка ${err}`);
       })
       .finally(() => {
-        addCardPopup.isSaving(false);
+        addCardPopup.renderLoading(false);
       });
   }
 });
@@ -197,6 +198,7 @@ const formEditValidate = new FormValidator(formEdit, config);
 formEditValidate.enableValidation();
 
 const formAddValidate = new FormValidator(formAdd, config);
+
 formAddValidate.enableValidation();
 
 const formAvatarValidate = new FormValidator(formAvatar, config);

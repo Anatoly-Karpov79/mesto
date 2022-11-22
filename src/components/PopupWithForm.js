@@ -24,7 +24,7 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners();
   }
 
-  isSaving(saving) {
+  renderLoading(saving) {
     if (saving) {
       this._submitFormButton.textContent = 'Сохранение...';
     } else {
