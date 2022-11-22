@@ -190,19 +190,7 @@ const cardList = new Section(
   },
   ".elements"
 );
-function statusLike(id, status) {
-  if (status === 'true') {
-      api.setLike(id)
-          .catch((err) => {
-              console.log(err);
-          })
-  } else {
-      api.removeLike(id)
-          .catch((err) => {
-              console.log(err);
-          })
-  };
-};
+
 
 // Включаем валидацию для попапов
 const formEditValidate = new FormValidator(formEdit, config);
