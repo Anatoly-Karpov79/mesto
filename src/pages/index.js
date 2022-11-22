@@ -76,22 +76,10 @@ const editProfile = new PopupWithForm({
  
   },
 });
-
 editProfile.setEventListeners();
-
-// Попап подтверждения удаления
-//const confirmDelete = new Popup ('.popup_confirm')
-
-//confirmDelete.setEventListeners();
 
 const confirmDelete = new PopupWithConfirm({
   popupSelector: ".popup_confirm",
-
- // submitFormHandler: () => {
-//    console.log(this._cardElement);
-    // profileInfo.setUserInfo(data);
- //   confirmDelete.close();
-//  },
 });
 confirmDelete.setEventListeners();
 
@@ -111,7 +99,6 @@ const addCardPopup = new PopupWithForm({
     api.addCard(data)
       .then((data) => {
         cardList.addNewItem(creatCard(data, data.owner._id));
-  //      console.log(data.owner._id)
         addCardPopup.close();
       })
       .catch((err) => {
@@ -131,8 +118,7 @@ addButton.addEventListener("click", () => {
 addCardPopup.setEventListeners();
 
 const imagePopup = new PopupWithImage(".popup_view");
-
-imagePopup.setEventListeners(popupView);
+      imagePopup.setEventListeners(popupView);
 
 // Создание новой карточки
 const creatCard = (item, userId) => {

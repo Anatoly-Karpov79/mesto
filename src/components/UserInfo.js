@@ -12,7 +12,6 @@ export default class UserInfo {
       avatar: this._avatar.src,
       id: this.id
       };
-      console.log(profile)
       return profile;
       
   }
@@ -23,6 +22,5 @@ export default class UserInfo {
     this._about.textContent = about;
     this._avatar.src = avatar;
     this._id=_id ;
-    console.log(name,about,avatar,_id)
-};
+   };
 }
