@@ -11,7 +11,7 @@ export default class Api {
       });
   }
   getUserInfo() {
-    return fetch(`https://mesto.nomoreparties.co/v1/cohort-54/users/me`, { 
+    return fetch(this._baseUrl + `/users/me`, { 
       method: "GET",
     headers: this._headers,
     }).then(this._handleResponse);
