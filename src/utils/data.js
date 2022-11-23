@@ -53,5 +53,6 @@ export const initialCards = [
   export const popupImageName = document.querySelector('.popup__view-name');
   export const popupAddSubmitBtn = document.querySelector('#popup__button-add');
   export const popupCloseBtn = document.querySelector('.popup__close-popup');
-  export const avatarImage = document.querySelector('.profile__avatar-image');
+  export const avatarImage = document.querySelector('.profile__avatar-button');
   export const formAvatar = document.querySelector ('#form__avatar');
+ // export const avatarButton = document.querySelector('profile__avatar-button')
