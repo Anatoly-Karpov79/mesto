@@ -452,8 +452,33 @@ background-image: url(bbe2a6eafac19c3d031c.svg);
     width: 120px;
     height: 120px;
     border-radius: 50%;
-  /*  background-image: url(../../../images/kusto.jpg);*/
     background-size: contain;
+   display: block;
+    
+}
+
+
+.profile__avatar{
+    position: relative;
+}
+.profile__avatar-button {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    border-radius: 50%;
+    background-color: rgb(0, 0, 0);
+    background-image: url(a086f758840ae814ecde.svg);
+    background-position: 50%;
+    opacity: 0;
+    background-repeat: no-repeat;
+
+}
+
+.profile__avatar-button:hover {
+    opacity: 0.7;
 }
 .profile__info {
     display: grid;
