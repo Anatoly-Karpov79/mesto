@@ -478,7 +478,9 @@ background-image: url(bbe2a6eafac19c3d031c.svg);
 }
 
 .profile__avatar-button:hover {
-    opacity: 0.7;
+    transition: 0.55s;
+    
+   opacity: 0.7;
 }
 .profile__info {
     display: grid;
